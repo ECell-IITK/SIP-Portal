@@ -31,10 +31,56 @@ import ProtectedRouteForRecruiter from "./components/ProtectedRouteForRecruiter"
 import Applicants from "./components/recruiter/Applicants";
 import ContactUs from "./components/ContactUs";
 function App() {
+  function ProformaPageWrapper() {
+    const { id } = useParams();
+    return <ProformaPage id={id} />;
+  }
+  function StudentProfileAdminWrapper() {
+    const { id } = useParams();
+    return <StudentProfileAdmin id={id} />;
+  }
   return (
-    <UserAuthContextProvider>
-      <SignUp />
-    </UserAuthContextProvider>
+    <>
+      <UserAuthContextProvider>
+        <Routes>
+          <Route path="/" element={<LogIn />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/forgotpassword" element={<ForgotPassword />} />
+          {/* <ProtectedRoute> */}
+          <Route path="/student" element={<ProtectedRouteForStudent><StudentDashboard /></ProtectedRouteForStudent> }>
+            <Route index element={<StudentHome /> } />
+            <Route path="profile" element={<StudentProfile />} />
+            <Route path="notice" element={<StudentNotices />} />
+            <Route path="resume" element={<Resume />} />
+            <Route path="contactUs" element={<ContactUs />} />
+            <Route path="jobOpening" element={<StudentJobOpening />} />
+            
+          </Route>
+          {/* </ProtectedRoute> */}
+          <Route path="/recruiter" element={<ProtectedRouteForRecruiter><RecruiterDashboard /></ProtectedRouteForRecruiter>}>
+            <Route path="/recruiter" element={<RecruiterHome />} />
+            <Route path="/recruiter/profile" element={<RecruiterProfile />} />
+            <Route path="/recruiter/proforma" element={<Proforma />} />
+            <Route path="/recruiter/proformas" element={<Proformas />} />
+            <Route path="/recruiter/applicants" element={<Applicants />} />
+            <Route path="contactUs" element={<ContactUs />} />
+
+          </Route>
+          <Route path="/admin" element={<ProtectedRoute><Dashboard /></ProtectedRoute>}>
+            <Route index element={<Admin />} />
+            <Route path="student" element={<Student />} />
+            <Route path="recruiter" element={<Recruiter />} />
+            <Route path="notice" element={<Notices />} />
+            <Route path="jobOpenings" element={<JobOpening />} />
+            <Route path="proformas" element={<AdminProformas />} />
+            <Route path="proforma/:id" element={<ProformaPageWrapper />} />
+            <Route path="profile/:id" element={<StudentProfileAdminWrapper />} />
+            <Route path="contactUs" element={<ContactUs />} />
+            <Route path="resume" element={<AdminResume />} />
+          </Route>
+        </Routes>
+      </UserAuthContextProvider>
+    </>
   );
 }
 
