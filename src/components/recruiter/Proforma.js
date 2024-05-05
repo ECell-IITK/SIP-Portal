@@ -130,11 +130,14 @@ export const Proforma = () => {
   const [validBranches, setValidBranches] = useState(initialBranchesState);
 
   const handleChange = (event) => {
-    setValidBranches({
+    setValidBranches((prev) => {return {
+      ...prev,
+      [event.target.name]: event.target.checked,
+    }});
+    console.log({
       ...validBranches,
       [event.target.name]: event.target.checked,
-    });
-    
+    })
   };
 
   return (
@@ -207,36 +210,6 @@ export const Proforma = () => {
                       label={branchListNames[index]}
                     />
                   ))}
-                  {/* <FormControlLabel
-                    control={
-                      <Checkbox
-                        checked={AE}
-                        onChange={handleChange}
-                        name="AE"
-                      />
-                    }
-                    label="Aerospace"
-                  />
-                  <FormControlLabel
-                    control={
-                      <Checkbox
-                        checked={CE}
-                        onChange={handleChange}
-                        name="CE"
-                      />
-                    }
-                    label="Civil"
-                  />
-                  <FormControlLabel
-                    control={
-                      <Checkbox
-                        checked={CSE}
-                        onChange={handleChange}
-                        name="CSE"
-                      />
-                    }
-                    label="Computer Science"
-                  /> */}
                 </FormGroup>
                 
               </FormControl>

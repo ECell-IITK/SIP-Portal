@@ -7,13 +7,13 @@ import { useUserAuth } from "./contexts/userAuthContext";
 
 const requiredBranches =  (validBranches) =>{
   // console.log(validBranches);
-  const { AE, CE, CSE, BSBE, EE, MSE, CHE, ME, MTH, PHY, CHM, ECO, ES, SDS,CGS,DES,IME,MSP,NET,PSE,Stats,HSS,Mathematics,SEE,SSA } = validBranches;
+  // const { AE, CE, CSE, BSBE, EE, MSE, CHE, ME, MTH, PHY, CHM, ECO, ES, SDS,CGS,DES,IME,MSP,NET,PSE,Stats,HSS,Mathematics,SEE,SSA } = validBranches;
   const branchList = ["AE","BSBE","CE","CHE","CSE","EE","MSE","ME","CHM","ECO","ES","MTH","SDS","PHY","CGS","DES","IME","MSP","NET","PSE","Stats","HSS","Mathematics","SEE","SSA"]
   // const branchesInBool = Object.keys(validBranches).map((key) => validBranches.key);
-  const branchesInBool = [ AE,CE,CSE,BSBE,EE,MSE, CHE,ME,MTH,PHY,CHM,ECO,ES,SDS,CGS,DES,IME,MSP,NET,PSE,Stats,HSS,Mathematics,SEE,SSA]
+  // const branchesInBool = [ "AE","BSBE","CE","CHE","CSE","EE","MSE","ME","CHM","ECO","ES","MTH","SDS","PHY","CGS","DES","IME","MSP","NET","PSE","Stats","HSS","Mathematics","SEE","SSA"]
   let branches = [];
   for(let i=0; i<branchList.length; i++){
-    if(branchesInBool[i]){
+    if(validBranches[branchList[i]]){
       branches.push(branchList[i]);
     }
   }
@@ -25,7 +25,7 @@ const ProformaPage = ({ id }) => {
   // console.log("new page")
   const { user } = useUserAuth();
   const [loading, setLoading] = useState(false);
-  const [proformData, setProformaData] = useState({});
+  const [proformaData, setProformaData] = useState({});
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -33,7 +33,7 @@ const ProformaPage = ({ id }) => {
       setProformaData(res.data());
       console.log(res.data());
       setLoading(false);
-    };
+    }; 
     fetchData();
     return () => {
       // setProformaData({});
@@ -63,7 +63,7 @@ const ProformaPage = ({ id }) => {
             borderRadius: "5px",
           }}
         >
-          {proformData.jobTitle}
+          {proformaData.jobTitle}
         </h2>
 
         <Typography
@@ -76,7 +76,7 @@ const ProformaPage = ({ id }) => {
           }}
         >
           <h6>Job Description</h6>
-          {ReactHtmlParser(proformData.content)}
+          {ReactHtmlParser(proformaData.content)}
         </Typography>
         <div
           style={{
@@ -96,7 +96,7 @@ const ProformaPage = ({ id }) => {
             }}
           >
             <h6>Job Location</h6>
-            {proformData.jobLocation}
+            {proformaData.jobLocation}
           </div>
           <div
             style={{
@@ -110,7 +110,7 @@ const ProformaPage = ({ id }) => {
           >
             <h6>Stipend</h6>
 
-            {proformData.stipend}
+            {proformaData.stipend}
           </div>
         </div>
         <div
@@ -126,7 +126,7 @@ const ProformaPage = ({ id }) => {
                     >
                       <h6>Eligible Branches</h6>
                       <div style={{display:"flex",flexDirection:"row",flexWrap:"wrap",gap:"5px"}}>
-                        {proformData.validBranches ? requiredBranches(proformData.validBranches).map((branch) => (
+                        {proformaData.validBranches ? requiredBranches(proformaData.validBranches).map((branch) => (
                           <div
                           style={{
                           }}

@@ -113,7 +113,6 @@ const Applicants = () => {
       const querySnapshot = await getDocs(q);
       setRows(
         function () {
-
             let data = []
             let newTransformedData = []
             querySnapshot.forEach((doc) => {

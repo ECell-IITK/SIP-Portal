@@ -54,6 +54,7 @@ export const JobOpening = () => {
   const [resumeList, setResumeList] = useState([]);
   const [appliedJobList, setAppliedJobList] = useState([]);
   const [recruitedStatus, setRecruitedStatus] = useState("pending");
+  const [department, setDepartment] = useState("");
   const { user } = useUserAuth();
   const navigate = useNavigate();
   const [open, setOpen] = React.useState(false);
@@ -105,10 +106,11 @@ export const JobOpening = () => {
         console.log(resumeLinks.data().data || [])
         setResumeList(resumeLinks.data().data.filter((item) => item.verified) || [] );
         setAppliedJobList(userData.data().appliedJobList || []);
+        setDepartment(userData.data().department || "");
         setUserName(userData.data().name);
         setLoading(false);
         console.log(data);
-      } catch (err) {
+      } catch (err) {     
         console.log(err.message);
       }
     };
@@ -236,7 +238,12 @@ export const JobOpening = () => {
     try {
       const jobTitle = jobSelected.jobTitle;
       const companyName = jobSelected.companyName;
+      const dataNeeded = await getDoc(doc(db,"proforma",jobSelected.porformaID));
       const getJob = await getDoc(doc(db, "appliedJobList", jobTitle));
+      console.log(dataNeeded)
+      console.log(dataNeeded.data())
+      const validBranches = dataNeeded.data().validBranches;
+      console.log(validBranches)
       const numberPart = resumeSelected.match(/(\d+)\.pdf$/);
       const numericValue = parseInt(numberPart[1], 10) - 1;
       const resumeData = resumeList[numericValue];
@@ -245,7 +252,10 @@ export const JobOpening = () => {
         setError("Resume not verified");
         return;
       }
-
+      if(!validBranches[department]){
+        setError("You are not eligible for this job - branch mismatch");
+        return;
+      }
       const appliedList = [...appliedJobList, jobTitle];
       setAppliedJobList(appliedList)
       if (getJob.exists()) {

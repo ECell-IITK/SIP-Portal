@@ -5,23 +5,27 @@ import { doc, getDoc, getDocs, collection, where } from "@firebase/firestore";
 import { Paper, Box, Typography, Container } from "@mui/material";
 import ReactHtmlParser from "react-html-parser";
 
-const requiredBranches = (validBranches) =>{
-  const { AE, CE, CSE, BSBE, EE, MSE, CHE, ME, MTH, PHY, CHM, ECO, ES, SDS,CGS,DES,IME,MSP,NET,PSE,Stats,HSS,Mathematics,SEE,SSA } = validBranches;
-  const branchList = ["AE","BSBE","CE","CHE","CSE","EE","MSE","ME","CHM","ECO","ES","MTH","SDS","PHY","CGS","DES","IME","MSP","NET","PSE","Stats","HSS","Mathematics","SEE","SSA"]
-  const branchesInBool = [ AE,CE,CSE,BSBE,EE,MSE, CHE,ME,MTH,PHY,CHM,ECO,ES,SDS,CGS,DES,IME,MSP,NET,PSE,Stats,HSS,Mathematics,SEE,SSA]
-  let branches = [];
-  for(let i=0; i<branchList.length; i++){
-    if(branchesInBool[i] === true){
-      branches.push(branchList[i]);
-    }
-  }
-  return branches;
-}
+
 
 export const Proformas = () => {
   const { user } = useUserAuth();
   const [loading, setLoading] = useState(false);
   const [proformaList, setProformaList] = useState([]);
+
+  const requiredBranches = (validBranches) =>{
+    console.log("hua")
+    // const { AE, CE, CSE, BSBE, EE, MSE, CHE, ME, MTH, PHY, CHM, ECO, ES, SDS,CGS,DES,IME,MSP,NET,PSE,Stats,HSS,Mathematics,SEE,SSA } = validBranches;
+    const branchList = ["AE","BSBE","CE","CHE","CSE","EE","MSE","ME","CHM","ECO","ES","MTH","SDS","PHY","CGS","DES","IME","MSP","NET","PSE","Stats","HSS","Mathematics","SEE","SSA"]
+    // const branchesInBool = [ AE,CE,CSE,BSBE,EE,MSE, CHE,ME,MTH,PHY,CHM,ECO,ES,SDS,CGS,DES,IME,MSP,NET,PSE,Stats,HSS,Mathematics,SEE,SSA]
+    let branches = [];
+    for(let i=0; i<branchList.length; i++){
+      if(validBranches[branchList[i]]){
+        branches.push(branchList[i]);
+      }
+    }
+    return branches;
+  }
+
   useEffect(() => {
     console.log(user);
     setLoading(true);
@@ -146,6 +150,7 @@ export const Proformas = () => {
                     >
                       <h6>Eligible Branches</h6>
                       <div style={{display:"flex",flexDirection:"row",flexWrap:"wrap",gap:"5px"}}>
+                        {console.log(requiredBranches(data.validBranches))}
                         {requiredBranches(data.validBranches).map((branch) => (
                           <div
                           style={{
