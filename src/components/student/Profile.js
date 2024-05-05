@@ -14,6 +14,8 @@ import { useUserAuth } from "../contexts/userAuthContext";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../firebase";
 
+const branchList = ["AE","BSBE","CE","CHE","CSE","EE","MSE","ME","CHM","ECO","ES","MTH","SDS","PHY","CGS","DES","IME","MSP","NET","PSE","Stats","HSS","Mathematics","SEE","SSA"]
+
 export const Profile = () => {
   const { user } = useUserAuth();
   const [error, setError] = useState("");
@@ -164,7 +166,7 @@ export const Profile = () => {
             </div>
             <div style={inputStyle}>
               <Typography variant="body1">Department</Typography>
-              <TextField
+              {/* <TextField
                 required
                 id="filled-required"
                 defaultValue=""
@@ -172,22 +174,42 @@ export const Profile = () => {
                 value={formData.department}
                 onChange={handleChange("department")}
                 sx={textFieldStyle}
-              ></TextField>
+              ></TextField> */}
+              <FormControl sx={textFieldStyle}>
+              <Select
+                  value={formData.department}
+                  onChange={handleChange("department")}
+                >
+                  {branchList.map((branch) => (
+                    <MenuItem value={branch}>{branch}</MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
             </div>
             <div style={inputStyle}>
               <Typography variant="body1">Secondary Department</Typography>
-              <TextField
+              {/* <TextField
                 id="filled-required"
                 defaultValue=""
                 variant="filled"
                 value={formData.secondaryDepartment}
                 onChange={handleChange("secondaryDepartment")}
                 sx={textFieldStyle}
-              ></TextField>
+              ></TextField> */}
+              <FormControl sx={textFieldStyle}>
+              <Select
+                  value={formData.secondaryDepartment}
+                  onChange={handleChange("secondaryDepartment")}
+                >
+                  {branchList.map((branch) => (
+                    <MenuItem value={branch}>{branch}</MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
             </div>
             <div style={inputStyle}>
               <Typography variant="body1">Program</Typography>
-              <TextField
+              {/* <TextField
                 required
                 id="filled-required"
                 defaultValue=""
@@ -195,11 +217,23 @@ export const Profile = () => {
                 value={formData.program}
                 onChange={handleChange("program")}
                 sx={textFieldStyle}
-              ></TextField>
+              ></TextField> */}
+              <FormControl sx={textFieldStyle}>
+              <Select
+                  value={formData.program}
+                  onChange={handleChange("program")}
+                >
+                  <MenuItem value="B Tech">BT</MenuItem>
+                  <MenuItem value="BS">BS</MenuItem>
+                  <MenuItem value="M Tech">MT</MenuItem>
+                  <MenuItem value="PhD">PhD</MenuItem>
+                  <MenuItem value="MBA">MBA</MenuItem>
+                </Select>
+              </FormControl>
             </div>
             <div style={inputStyle}>
               <Typography variant="body1">Secondary Program</Typography>
-              <TextField
+              {/* <TextField
                 required
                 id="filled-required"
                 defaultValue=""
@@ -207,7 +241,19 @@ export const Profile = () => {
                 value={formData.secondaryProgram}
                 onChange={handleChange("secondaryProgram")}
                 sx={textFieldStyle}
-              ></TextField>
+              ></TextField> */}
+              <FormControl sx={textFieldStyle}>
+              <Select
+                  value={formData.secondaryProgram}
+                  onChange={handleChange("secondaryProgram")}
+                >
+                  <MenuItem value="B Tech">B. Tech</MenuItem>
+                  <MenuItem value="M Tech">M. Tech</MenuItem>
+                  <MenuItem value="PhD">PhD</MenuItem>
+                  <MenuItem value="MBA">MBA</MenuItem>
+                  <MenuItem value="BS">BS</MenuItem>
+                </Select>
+              </FormControl>
             </div>
             <div style={inputStyle}>
               <Typography variant="body1">Specialisation</Typography>

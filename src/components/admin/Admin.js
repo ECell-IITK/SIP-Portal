@@ -64,7 +64,7 @@ const Admin = () => {
   }
 
   return (
-    <div style={{ height: "100%", width: "100%", maxHeight:"85vh",margin:"auto" }}>
+    <div style={{ width: "100%", margin:"auto" }}>
       {/* <DataGrid {...data}  slots={{ toolbar: GridToolbar }} /> */}
       <DataGrid
         rows={rows}
@@ -77,7 +77,7 @@ const Admin = () => {
             showQuickFilter: true,
           },
         }}
-        sx={{padding:"10px",maxWidth:getWidth(),margin:"auto"}}
+        sx={{padding:"10px",maxWidth:getWidth(),margin:"auto",backgroundColor:"white"}}
       />
     </div>
   );

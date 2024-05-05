@@ -162,7 +162,7 @@ export const Dashboard = () => {
         <Toolbar>
           <IconButton
             color="turquoise"
-            aria-label="open drawer"
+            aria-label="open drawer" 
             onClick={handleDrawerOpen}
             edge="start"
             sx={{ mr: 2, ...(open && { display: "none" }) }}

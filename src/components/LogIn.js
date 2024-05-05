@@ -24,31 +24,36 @@ const LogIn = () => {
           const res = await logIn(localEmail, localPassword);
           if (!res.user.emailVerified) {
             setError("Please verify your email on your registered email address");
+            setLoading(false);
             return;
           }
-          /* else if(res.user.freeze){
-            setError("Your account has been frozen by the admin");
-            return;
-          }else if(!res.user.verified){
-            setError("Your account has not been verified by the admin yet");
-            return;
-          } */
-          // navigate("/student");
           const userData = await getDoc(doc(db, "users", res.user.uid));
           if (userData.exists()) {
-            // console.log(userData.data());
             const data = userData.data();
             if (data.userType === "student") {
               console.log("student");
               if(data.freeze){
                 setError("Your account has been frozen by the admin");
+                setLoading(false);
                 return;
               }else if(!data.verified){
                 setError("Your account has not been verified by the admin yet");
+                setLoading(false)
                 return;
               }
               navigate("/student");
             } else if (data.userType === "recruiter") {
+              console.log("recruiter")
+              console.log(data);
+              if(data.freeze){
+                setError("Your account has been frozen by the admin");
+                setLoading(false)
+                return;
+              }else if(!data.verified){
+                setError("Your account has not been verified by the admin yet");
+                setLoading(false)
+                return;
+              }
               navigate("/recruiter");
             }else if (data.userType === "admin") {
               navigate("/admin");
@@ -91,6 +96,7 @@ const LogIn = () => {
         const res = await logIn(email, password);
         if (!res.user.emailVerified) {
           setError("Please verify your email on the registered email address");
+          setLoading(false)
           return;
         }
         // navigate("/student");
@@ -104,13 +110,24 @@ const LogIn = () => {
             console.log("student");
             if(data.freeze){
               setError("Your account has been frozen by the admin");
+              setLoading(false)
               return;
             }else if(!data.verified){
               setError("Your account has not been verified by the admin yet");
+              setLoading(false)
               return;
             }
             navigate("/student");
           } else if (data.userType === "recruiter") {
+            if(data.freeze){
+              setError("Your account has been frozen by the admin");
+              setLoading(false)
+              return;
+            }else if(!data.verified){
+              setError("Your account has not been verified by the admin yet");
+              setLoading(false)
+              return;
+            }
             navigate("/recruiter");
           }else if (data.userType === "admin") {
             navigate("/admin");

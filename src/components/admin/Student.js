@@ -7,7 +7,7 @@ import { styled } from '@mui/material/styles';
 import LinearProgress from '@mui/material/LinearProgress';
 import { Button } from '@mui/material';
 import { useUserAuth } from '../contexts/userAuthContext';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"; 
 
 
 const Student = () => {
@@ -18,20 +18,6 @@ const Student = () => {
   useEffect(() => {
     const colRef = collection(db, "users");
     const q = query(colRef, where("userType", "==", "student"));
-    // const querySnapshot = await getDocs(q);
-    // const fetchData = async () => {
-      // try {
-      //   // console.log(querySnapshot);
-      //   const data = querySnapshot.docs.map((doc) => {
-      //     console.log(doc.id);
-      //     return {...doc.data(),id:doc.id}
-      //   });
-      //   console.log(data);
-      //   setRows(data)
-      // } catch (error) {
-      //   console.error("Error fetching data:", error);
-      // }
-    // };
     onSnapshot(q, (querySnapshot) => {
       const data = [];
       querySnapshot.forEach((doc,index) => {
@@ -110,7 +96,7 @@ const Student = () => {
     }
   ];
   return (
-    <div style={{height:"100%",width:"100%",maxHeight:"85vh" }}>
+    <div style={{width:"100%" }}>
       {/* <DataGrid {...data}  slots={{ toolbar: GridToolbar }} /> */}
       <DataGrid
         rows={rows}
@@ -123,7 +109,7 @@ const Student = () => {
             showQuickFilter: true,
           },
         }}
-        sx={{padding:"10px",maxWidth:"90vw"}}
+        sx={{padding:"10px",maxWidth:"90vw",backgroundColor:"white"}}
       />
     </div>)
 }

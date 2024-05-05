@@ -153,7 +153,7 @@ const Dashboard = () => {
     
   },[location.pathname])
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: "flex",backgroundColor:"#f3f6f9" }}>
       <CssBaseline />
       <AppBar  open={open} elevation={0} sx={{backgroundColor:"transparent"}}>
         <Toolbar>
@@ -284,6 +284,7 @@ const Dashboard = () => {
               <ListItemText primary="Job Openings" />
             </ListItemButton>
           </ListItem>
+        
         <ListItem
             key="Proformas"
             disablePadding
@@ -312,7 +313,7 @@ const Dashboard = () => {
           </ListItem>
         </List>
       </Drawer>
-      <Main open={open} sx={{backgroundColor:"#f3f6f9"}}>
+      <Main open={open} sx={{overflowX:"hidden"}}>
         <DrawerHeader />
         <Outlet />
       </Main>

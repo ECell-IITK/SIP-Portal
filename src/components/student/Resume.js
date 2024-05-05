@@ -75,12 +75,14 @@ const Resume = () => {
     {
       field: "fileName",
       headerName: "Title",
-      width: 600,
+      minWidth: 200,
+      flex:2
     },
     {
       field: "link",
       headerName: "Resume",
-      width: 200,
+      minWidth: 100,
+      flex:1,
       renderCell: (params) => (
         <div>
           <a
@@ -96,7 +98,8 @@ const Resume = () => {
     {
       field: "verified",
       headerName: "Verified",
-      width: 200,
+      minWidth: 100,
+      flex:1,
       renderCell: (params) => (
         <div>
           {params.row.verified ? (
@@ -112,7 +115,7 @@ const Resume = () => {
   const handleChange = (newValue, info) => {
     setFile(newValue);
   };
-  // useEffect(() => {
+    // useEffect(() => {
   //   const fetchData = async () => {
   //     try {
   //       const userData = await getDoc(doc(db, "users", user.uid));
@@ -200,6 +203,7 @@ const Resume = () => {
     }
     // const requiredName = resumeNames[0];
     if (file.name !== requiredName) {
+      // if(requiredName ===  "undefined"){window.location.reload()}
       setError("File name should be in the format: " + requiredName);
       setLoading(false);
       return;
@@ -207,7 +211,6 @@ const Resume = () => {
     console.log("uploading file");
     const storageRef = sRef(storage, `${rollNumber}/${file.name}`);
     await uploadBytes(storageRef, file).then(() => {
-      // console.log("uploaded image")
       setMessage("File uploaded successfully");
       setLoading(false);
     });

@@ -19,6 +19,7 @@ import Recruiter from "./components/admin/Recruiter";
 import Notices from "./components/admin/Notices";
 import {Resume as AdminResume} from "./components/admin/Resume";
 import { StudentProfile as StudentProfileAdmin} from "./components/admin/StudentProfile";
+import { Applicants as ApplicantsAdmin } from "./components/admin/Applicants";
 import Proformas from "./components/recruiter/Proformas";
 import JobOpening from "./components/admin/JobOpening";
 import ProformaPage from "./components/ProformaPage"; 
@@ -38,6 +39,10 @@ function App() {
   function StudentProfileAdminWrapper() {
     const { id } = useParams();
     return <StudentProfileAdmin id={id} />;
+  }
+  function ApplicantsWrapper() {
+    const { id } = useParams();
+    return <ApplicantsAdmin id={id} />;
   }
   return (
     <>
@@ -77,6 +82,7 @@ function App() {
             <Route path="profile/:id" element={<StudentProfileAdminWrapper />} />
             <Route path="contactUs" element={<ContactUs />} />
             <Route path="resume" element={<AdminResume />} />
+            <Route path="applicants/:id" element={<ApplicantsWrapper />} />
           </Route>
         </Routes>
       </UserAuthContextProvider>

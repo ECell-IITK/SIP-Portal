@@ -149,6 +149,10 @@ const JobOpening = () => {
     console.log(id);
     navigate(`/admin/proforma/${id}`);
   }
+  function handleApplicantsClick(id) {
+    console.log(id);
+    navigate(`/admin/applicants/${id}`);
+  }
 
   const columns = [
     {
@@ -180,6 +184,19 @@ const JobOpening = () => {
       minWidth: 100,
       flex:1
     },
+    {
+      field: "applicants",
+      headerName: "Applicants",
+      minWidth: 200,
+      flex:1,
+      renderCell: (params) => (
+        <div>
+          <Button onClick={() => handleApplicantsClick(params.row.jobTitle)}>
+            View
+          </Button>
+        </div>
+      ),
+    }
   ];
   const getWidth = () => {
     if(window.innerWidth > 1000){

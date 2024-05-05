@@ -110,7 +110,7 @@ const ContactUs = () => {
         elevation={0}
         sx={{
           margin: "auto",
-          width: "100%",
+          width: "100vw",
           maxWidth: "1000px",
           marginTop: "30px",
         }}

@@ -73,13 +73,15 @@ const theme = createTheme({
 });
 
 const columns = [
-  { field: "name", headerName: "Name", width: 200 },
-  { field: "email", headerName: "Email", width: 200 },
-    { field: "jobOpening", headerName: "Applied for", width: 200 },
+  { field: "name", headerName: "Name", minWidth: 100,flex:1 },
+  { field: "email", headerName: "Email", minWidth: 200,flex:2 },
+  { field: "jobOpening", headerName: "Applied for", minWidth: 200,flex:2 },
+  {field: "resumeLink", headerName: "Resume Link", minWidth: 100,flex:1},
   {
-    field: "resumeLink",
-    headerName: "Resume Link",
-    width: 200,
+    field: "ResumeLink",
+    headerName: "Resume",
+    minWidth: 140,
+    flex:1,
     renderCell: (params) => (
       <div>
         <Button
@@ -136,7 +138,6 @@ const Applicants = () => {
       );
     };
     fetchData();
-    console.log(rows);
     return () => {};
   }, [user]);
 
@@ -148,7 +149,7 @@ const Applicants = () => {
       >
         <h1 style={{textAlign:"center"}}>Applicants</h1>
         <ThemeProvider theme={theme}>
-          <div style={{ padding: "10px", margin: "5px", width: "100%" }}>
+          <div style={{ padding: "10px", margin: "5px" }}>
             <DataGrid
             checkboxSelection
               rows={rows}

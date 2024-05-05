@@ -5,6 +5,19 @@ import { doc, getDoc, getDocs, collection, where } from "@firebase/firestore";
 import { Paper, Box, Typography, Container } from "@mui/material";
 import ReactHtmlParser from "react-html-parser";
 
+const requiredBranches = (validBranches) =>{
+  const { AE, CE, CSE, BSBE, EE, MSE, CHE, ME, MTH, PHY, CHM, ECO, ES, SDS,CGS,DES,IME,MSP,NET,PSE,Stats,HSS,Mathematics,SEE,SSA } = validBranches;
+  const branchList = ["AE","BSBE","CE","CHE","CSE","EE","MSE","ME","CHM","ECO","ES","MTH","SDS","PHY","CGS","DES","IME","MSP","NET","PSE","Stats","HSS","Mathematics","SEE","SSA"]
+  const branchesInBool = [ AE,CE,CSE,BSBE,EE,MSE, CHE,ME,MTH,PHY,CHM,ECO,ES,SDS,CGS,DES,IME,MSP,NET,PSE,Stats,HSS,Mathematics,SEE,SSA]
+  let branches = [];
+  for(let i=0; i<branchList.length; i++){
+    if(branchesInBool[i] === true){
+      branches.push(branchList[i]);
+    }
+  }
+  return branches;
+}
+
 export const Proformas = () => {
   const { user } = useUserAuth();
   const [loading, setLoading] = useState(false);
@@ -117,10 +130,32 @@ export const Proformas = () => {
                       }}
                     >
                       <h6>Stipend</h6>
-
                       {data.stipend}
                     </div>
                   </div>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "5px",
+                      flexWrap: "wrap",
+                      backgroundColor: "white",
+                      margin: "5px",
+                      padding: "5px",
+                    }} 
+                    >
+                      <h6>Eligible Branches</h6>
+                      <div style={{display:"flex",flexDirection:"row",flexWrap:"wrap",gap:"5px"}}>
+                        {requiredBranches(data.validBranches).map((branch) => (
+                          <div
+                          style={{
+                          }}
+                          >
+                            {branch}
+                          </div>
+                        ))}
+                      </div>
+                      </div>
                 </Container>
               ))
             )}

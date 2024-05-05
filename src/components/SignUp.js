@@ -114,6 +114,7 @@ const SignUp = () => {
           data: [],
           appliedJobList: [],
           freeze: false,
+          verified:false,
           recruitedStatus: "pending",
         });
         await emailVerification().then(() => {
