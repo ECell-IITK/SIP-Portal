@@ -164,9 +164,6 @@ export const ProformaPage = ({ id }) => {
 
     return () => {
       // cleanup
-      // setContent("");
-      // setHeading("");
-      // setNoticeList([]);
       unsubscribe();
     };
   }, []);

@@ -7,7 +7,10 @@ import {
   MenuItem,
   Autocomplete,
   Button,
+  Modal,
   Alert,
+  Box,
+  InputLabel
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useUserAuth } from "../contexts/userAuthContext";
@@ -18,6 +21,8 @@ import {
   serverTimestamp,
   query,
   onSnapshot,
+  doc,
+  updateDoc,
 } from "firebase/firestore";
 import {
   DataGrid,
@@ -45,13 +50,24 @@ const JobOpening = () => {
   const [jobSelected, setJobSelected] = useState(null);
   const [JobOpeningList, setJobOpeningList] = useState([]);
   const [listLoading, setListLoading] = useState(false);
+  const [jobSelectedId,setJobSelectedId] = useState(null);
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const { user } = useUserAuth();
-  const navigate = useNavigate();
   const [dateTimeValue, setDateTimeValue] = React.useState(
     dayjs("2024-04-17T15:30")
   );
+  const [updatedDateTimeValue, setUpdatedDateTimeValue] = React.useState(
+    dayjs("2024-04-17T15:30")
+  );
+  const navigate = useNavigate();
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = (data) => {
+    console.log(data);
+    setJobSelectedId(data);
+    setOpen(true);
+  };
+  const handleClose = () => setOpen(false);
 
   const theme = createTheme({
     palette: {
@@ -153,12 +169,28 @@ const JobOpening = () => {
     console.log(id);
     navigate(`/admin/applicants/${id}`);
   }
-
+  const handleUpdateDeadline = async () => {
+    // console.log("Update Deadline",id);
+    const updateRef = doc(db,"jobOpenings",jobSelectedId);
+    setLoading(true);
+    try{
+      await updateDoc(updateRef,{
+        deadline: updatedDateTimeValue.$d.toLocaleString(),
+      });
+      setMessage("Deadline Updated Successfully");
+      setLoading(false);
+    }catch(err){
+      console.log(err.message);
+      setMessage("Failed to update Deadline");
+      setLoading(false);
+    }
+    handleClose();
+  }
   const columns = [
     {
       field: "heading",
       headerName: "Title",
-      minWidth: 300,
+      minWidth: 200,
       flex:2,
       renderCell: (params) => (
         <div style={{ width: "100%" }}>{params.row.heading}</div>
@@ -167,9 +199,9 @@ const JobOpening = () => {
 
     {
       field: "id",
-      headerName: "Proforma Link",
+      headerName: "Proforma",
       minWidth: 200,
-      flex:1,
+      flex:2,
       renderCell: (params) => (
         <div>
           <Button onClick={() => handleProformaClick(params.row.porformaID)}>
@@ -181,13 +213,13 @@ const JobOpening = () => {
     {
       field: "deadline",
       headerName: "Deadline",
-      minWidth: 100,
+      minWidth: 170,
       flex:1
     },
     {
       field: "applicants",
       headerName: "Applicants",
-      minWidth: 200,
+      minWidth: 100,
       flex:1,
       renderCell: (params) => (
         <div>
@@ -196,6 +228,19 @@ const JobOpening = () => {
           </Button>
         </div>
       ),
+    },
+    {
+      field:"updateDeadline",
+      headerName:"Update Deadline",
+      minWidth:100,
+      flex:1,
+      renderCell: (params) => (
+        <div>
+          <Button onClick={() => handleOpen(params.row.id)}>
+            Update
+          </Button>
+        </div>
+      )
     }
   ];
   const getWidth = () => {
@@ -205,9 +250,44 @@ const JobOpening = () => {
       return "95vw";
     }
   }
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "background.paper",
+    border: "2px solid #000",
+    boxShadow: 24,
+    p: 4,
+  };
 
   return (
     <>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          {/* Applying for {jobSelected} */}
+          <strong>Set New Deadline</strong>
+          <FormControl fullWidth>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DemoContainer components={["DateTimePicker"]}>
+                <DateTimePicker
+                renderInput = {(params) => <TextField {...params} />}
+                  value={updatedDateTimeValue}
+                  onChange={(newValue) => setUpdatedDateTimeValue(newValue)}
+                  label="Select Deadline"
+                />
+              </DemoContainer>
+            </LocalizationProvider>
+            <Button onClick={handleUpdateDeadline}>Submit</Button>
+          </FormControl>
+        </Box>
+      </Modal>
       <Alert
         severity="error"
         sx={{
