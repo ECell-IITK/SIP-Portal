@@ -17,11 +17,13 @@ import Admin from "./components/admin/Admin";
 import Student from "./components/admin/Student";
 import Recruiter from "./components/admin/Recruiter";
 import Notices from "./components/admin/Notices";
+import NoticesForRecruiter from "./components/admin/NoticesForRecruiter";
 import {Resume as AdminResume} from "./components/admin/Resume";
 import { StudentProfile as StudentProfileAdmin} from "./components/admin/StudentProfile";
 import { Applicants as ApplicantsAdmin } from "./components/admin/Applicants";
 import Proformas from "./components/recruiter/Proformas";
 import {ProformaPage as ProformaPageRecruiter} from "./components/recruiter/ProformaPage";
+import {Notices as NoticesRecruiter} from "./components/recruiter/Notices";
 import JobOpening from "./components/admin/JobOpening";
 import ProformaPage from "./components/ProformaPage"; 
 import { Proformas as AdminProformas } from "./components/admin/Proformas";
@@ -69,6 +71,7 @@ function App() {
           {/* </ProtectedRoute> */}
           <Route path="/recruiter" element={<ProtectedRouteForRecruiter><RecruiterDashboard /></ProtectedRouteForRecruiter>}>
             <Route path="/recruiter" element={<RecruiterHome />} />
+            <Route path="/recruiter/notice" element={<NoticesRecruiter />} />
             <Route path="/recruiter/profile" element={<RecruiterProfile />} />
             <Route path="/recruiter/proforma" element={<Proforma />} />
             <Route path="/recruiter/proformas" element={<Proformas />} />
@@ -89,6 +92,7 @@ function App() {
             <Route path="contactUs" element={<ContactUs />} />
             <Route path="resume" element={<AdminResume />} />
             <Route path="applicants/:id" element={<ApplicantsWrapper />} />
+            <Route path="noticesRecruiter" element={<NoticesForRecruiter />} />
           </Route>
         </Routes>
       </UserAuthContextProvider>

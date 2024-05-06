@@ -112,6 +112,10 @@ const Dashboard = () => {
     navigate("/admin/notice");
   }
 
+  const handleNoticeRecruiterClick = () => {
+    navigate("/admin/noticesRecruiter");
+  }
+
   const handleResumeClick = () => {
     navigate("/admin/resume");
   } 
@@ -242,7 +246,20 @@ const Dashboard = () => {
               <ListItemIcon>
                 <MailIcon />
               </ListItemIcon>
-              <ListItemText primary="Notices" />
+              <ListItemText primary="Notices - Students" />
+            </ListItemButton>
+          </ListItem>
+          <ListItem
+            key="Notices"
+            disablePadding
+            onClick={handleNoticeRecruiterClick}
+            sx={styleNoticeButton}
+          >
+            <ListItemButton>
+              <ListItemIcon>
+                <MailIcon />
+              </ListItemIcon>
+              <ListItemText primary="Notices - Recruiter" />
             </ListItemButton>
           </ListItem>
           <ListItem

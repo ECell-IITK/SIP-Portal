@@ -110,7 +110,7 @@ export const Dashboard = () => {
   };
 
   const handleNoticeClick = () => {
-    navigate("/student/notice");
+    navigate("/recruiter/notice");
   }
 
   const handleProfileClick = () => {
@@ -248,6 +248,19 @@ export const Dashboard = () => {
                 <MailIcon />
               </ListItemIcon>
               <ListItemText primary="Applicants" />
+            </ListItemButton>
+          </ListItem>
+          <ListItem
+            key="Applicants"
+            disablePadding
+            onClick={handleNoticeClick}
+            sx={{...styleNoticeButton}}
+          >
+            <ListItemButton>
+              <ListItemIcon>
+                <MailIcon />
+              </ListItemIcon>
+              <ListItemText primary="Notices" />
             </ListItemButton>
           </ListItem>
         <ListItem
