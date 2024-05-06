@@ -5,21 +5,47 @@ import { Box, Paper, Typography } from "@mui/material";
 import ReactHtmlParser from "react-html-parser";
 import { useUserAuth } from "./contexts/userAuthContext";
 
-const requiredBranches =  (validBranches) =>{
+const requiredBranches = (validBranches) => {
   // console.log(validBranches);
   // const { AE, CE, CSE, BSBE, EE, MSE, CHE, ME, MTH, PHY, CHM, ECO, ES, SDS,CGS,DES,IME,MSP,NET,PSE,Stats,HSS,Mathematics,SEE,SSA } = validBranches;
-  const branchList = ["AE","BSBE","CE","CHE","CSE","EE","MSE","ME","CHM","ECO","ES","MTH","SDS","PHY","CGS","DES","IME","MSP","NET","PSE","Stats","HSS","Mathematics","SEE","SSA"]
+  const branchList = [
+    "AE",
+    "BSBE",
+    "CE",
+    "CHE",
+    "CSE",
+    "EE",
+    "MSE",
+    "ME",
+    "CHM",
+    "ECO",
+    "ES",
+    "MTH",
+    "SDS",
+    "PHY",
+    "CGS",
+    "DES",
+    "IME",
+    "MSP",
+    "NET",
+    "PSE",
+    "Stats",
+    "HSS",
+    "Mathematics",
+    "SEE",
+    "SSA",
+  ];
   // const branchesInBool = Object.keys(validBranches).map((key) => validBranches.key);
   // const branchesInBool = [ "AE","BSBE","CE","CHE","CSE","EE","MSE","ME","CHM","ECO","ES","MTH","SDS","PHY","CGS","DES","IME","MSP","NET","PSE","Stats","HSS","Mathematics","SEE","SSA"]
   let branches = [];
-  for(let i=0; i<branchList.length; i++){
-    if(validBranches[branchList[i]]){
+  for (let i = 0; i < branchList.length; i++) {
+    if (validBranches[branchList[i]]) {
       branches.push(branchList[i]);
     }
   }
   // console.log(branches)
   return branches;
-}
+};
 
 const ProformaPage = ({ id }) => {
   // console.log("new page")
@@ -33,13 +59,13 @@ const ProformaPage = ({ id }) => {
       setProformaData(res.data());
       console.log(res.data());
       setLoading(false);
-    }; 
+    };
     fetchData();
     return () => {
       // setProformaData({});
     };
   }, [user]);
-  
+
   return (
     <div>
       {/* {id} */}
@@ -52,7 +78,7 @@ const ProformaPage = ({ id }) => {
           padding: "5px",
           margin: "auto",
           width: "100%",
-          maxWidth:"900px"
+          maxWidth: "900px",
         }}
       >
         <h2
@@ -114,28 +140,36 @@ const ProformaPage = ({ id }) => {
           </div>
         </div>
         <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      gap: "5px",
-                      flexWrap: "wrap",
-                      backgroundColor: "white",
-                      margin: "5px",
-                      padding: "5px",
-                    }} 
-                    >
-                      <h6>Eligible Branches</h6>
-                      <div style={{display:"flex",flexDirection:"row",flexWrap:"wrap",gap:"5px"}}>
-                        {proformaData.validBranches ? requiredBranches(proformaData.validBranches).map((branch) => (
-                          <div
-                          style={{
-                          }}
-                          >
-                            {branch}
-                          </div>
-                        )): "All Branches"}
-                      </div>
-                      </div>
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "5px",
+            flexWrap: "wrap",
+            backgroundColor: "white",
+            margin: "5px",
+            padding: "5px",
+          }}
+        >
+          <h6>Eligible Branches</h6>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              flexWrap: "wrap",
+              gap: "5px",
+            }}
+          >
+            {proformaData.validBranches
+              ? requiredBranches(proformaData.validBranches).map(
+                  (branch, index) => (
+                    <div key={index} style={{}}>
+                      {branch}
+                    </div>
+                  )
+                )
+              : "All Branches"}
+          </div>
+        </div>
       </Paper>
     </div>
   );

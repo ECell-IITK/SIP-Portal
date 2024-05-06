@@ -142,10 +142,10 @@ export const JobOpening = () => {
         justifyContent: "space-between",
       }}
     >
-      <div>
+      {/* <div>
         <GridToolbarColumnsButton />
         <GridToolbarFilterButton />
-      </div>
+      </div> */}
       <div>
         <GridToolbarQuickFilter />
       </div>
@@ -185,7 +185,8 @@ export const JobOpening = () => {
     {
       field: "heading",
       headerName: "Title",
-      width: 300,
+      minWidth: 100,
+      flex:3,
       renderCell: (params) => (
         <div style={{ width: "100%" }}>{params.row.heading}</div>
       ),
@@ -194,7 +195,8 @@ export const JobOpening = () => {
     {
       field: "id",
       headerName: "Proforma Link",
-      width: 200,
+      minWidth: 100,
+      flex:1,
       renderCell: (params) => (
         <div>
           <Button onClick={() => handleProformaClick(params.row.porformaID)}>
@@ -206,7 +208,8 @@ export const JobOpening = () => {
     {
       field: "createdAt",
       headerName: "Created At",
-      width: 100,
+      minWidth: 100,
+      flex:1,
       renderCell: (params) => (
         <div>
           {new Date(params.row.createdAt?.seconds * 1000).toLocaleDateString()}
@@ -216,7 +219,8 @@ export const JobOpening = () => {
     {
       field: "apply",
       headerName: "Apply",
-      width: 100,
+      minWidth: 100,
+      flex:1,
       renderCell: (params) => {
         givenTime = new Date(params.row.deadline)
         return (

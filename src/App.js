@@ -21,6 +21,7 @@ import {Resume as AdminResume} from "./components/admin/Resume";
 import { StudentProfile as StudentProfileAdmin} from "./components/admin/StudentProfile";
 import { Applicants as ApplicantsAdmin } from "./components/admin/Applicants";
 import Proformas from "./components/recruiter/Proformas";
+import {ProformaPage as ProformaPageRecruiter} from "./components/recruiter/ProformaPage";
 import JobOpening from "./components/admin/JobOpening";
 import ProformaPage from "./components/ProformaPage"; 
 import { Proformas as AdminProformas } from "./components/admin/Proformas";
@@ -32,6 +33,10 @@ import ProtectedRouteForRecruiter from "./components/ProtectedRouteForRecruiter"
 import Applicants from "./components/recruiter/Applicants";
 import ContactUs from "./components/ContactUs";
 function App() {
+  function ProformaPageRecruiterWrapper(){
+    const { id } = useParams();
+    return <ProformaPageRecruiter id={id} />;
+  }
   function ProformaPageWrapper() {
     const { id } = useParams();
     return <ProformaPage id={id} />;
@@ -67,6 +72,7 @@ function App() {
             <Route path="/recruiter/profile" element={<RecruiterProfile />} />
             <Route path="/recruiter/proforma" element={<Proforma />} />
             <Route path="/recruiter/proformas" element={<Proformas />} />
+            <Route path="proforma/:id" element={<ProformaPageRecruiterWrapper />} />
             <Route path="/recruiter/applicants" element={<Applicants />} />
             <Route path="contactUs" element={<ContactUs />} />
 

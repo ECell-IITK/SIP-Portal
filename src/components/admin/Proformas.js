@@ -69,17 +69,15 @@ export const Proformas = () => {
         }
     },[])
     const columns = [
-        // { field: "id", headerName: "ID", width: 70 },
         { field: "jobTitle", headerName: "Job Title", minWidth: 100,flex:1 },
-        
-        {field: "companyName",headerName:"Company Name",minWidth:100,flex:1},
+        { field: "companyName",headerName:"Company Name",minWidth:100,flex:1},
         { field: "createdAt", headerName: "Created At", minWidth: 100,flex:1,
         renderCell: (params) => (
             <div>
                 {new Date(params.row.createdAt?.seconds * 1000).toLocaleDateString()}
             </div>
         )
-    },
+        },
         {
           field: "actions",
           headerName: "Actions",
@@ -98,7 +96,7 @@ export const Proformas = () => {
       ];
   return (
     <>
-    <Paper elevation={0} sx={{backgroundColor:"#f3f6f9",height:"100%",width:"100%",maxHeight:"85vh" }}>
+    <Paper elevation={0} sx={{backgroundColor:"#f3f6f9",width:"100%" }}>
         <h1 style={{textAlign:"center"}}>Proformas</h1>
         <ThemeProvider theme={theme}>
         <div>
@@ -118,7 +116,8 @@ export const Proformas = () => {
               width: "100%",
               margin: "auto",
               boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
-              maxWidth:"90vw"
+              maxWidth:"90vw",
+              minHeight: "300px",
             }}
           />
         </div>

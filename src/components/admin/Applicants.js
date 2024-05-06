@@ -65,7 +65,7 @@ export const Applicants = ({id}) => {
           setLoading(true);
           const res = await getDoc(doc(db, "appliedJobList", id));
         //   setRows((prev) => [...prev, {...res.data().data,id:res.id}]);
-        const data = res.data().data.map((item,index)=>({...item,id:index+1}));
+        const data = res.exists() ? res.data().data : [];
         setRows(data);
           console.log(res.data());
           setLoading(false);

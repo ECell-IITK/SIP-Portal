@@ -227,8 +227,8 @@ const Notices = () => {
       }}
     >
       <div>
-        <GridToolbarColumnsButton />
-        <GridToolbarFilterButton />
+        {/* <GridToolbarColumnsButton />
+        <GridToolbarFilterButton /> */}
       </div>
       <div>
         <GridToolbarQuickFilter />

@@ -50,7 +50,7 @@ const JobOpening = () => {
   const { user } = useUserAuth();
   const navigate = useNavigate();
   const [dateTimeValue, setDateTimeValue] = React.useState(
-    dayjs("2022-04-17T15:30")
+    dayjs("2024-04-17T15:30")
   );
 
   const theme = createTheme({
@@ -135,8 +135,8 @@ const JobOpening = () => {
       }}
     >
       <div>
-        <GridToolbarColumnsButton />
-        <GridToolbarFilterButton />
+        {/* <GridToolbarColumnsButton />
+        <GridToolbarFilterButton /> */}
       </div>
       <div>
         <GridToolbarQuickFilter />
@@ -311,6 +311,7 @@ const JobOpening = () => {
                 margin: "auto",
                 boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
                 maxWidth: getWidth(),
+                minHeight: "300px",
               }}
             />
           </div>
