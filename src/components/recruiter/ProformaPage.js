@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { db } from "../firebase";
-import { doc, getDoc, getDocs, collection, where, onSnapshot, updateDoc } from "@firebase/firestore";
-import { Box, Button, Paper, Typography } from "@mui/material";
+import { doc, onSnapshot, updateDoc } from "@firebase/firestore";
+import { Button, Paper, Typography } from "@mui/material";
 import ReactHtmlParser from "react-html-parser";
 import { useUserAuth } from "../contexts/userAuthContext";
 import FormLabel from "@mui/material/FormLabel";
@@ -252,7 +252,6 @@ export const ProformaPage = ({ id }) => {
             }}
           >
             <h6>Stipend</h6>
-
             {proformaData.stipend}
           </div>
         </div>

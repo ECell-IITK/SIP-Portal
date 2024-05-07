@@ -2,7 +2,6 @@ import React,{useState, useEffect} from 'react'
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { db } from "../firebase";
 import { collection, getDocs, query, where, updateDoc, doc, onSnapshot } from "firebase/firestore";
-// import { Button } from '@mui/material';
 import {Button} from '@mui/material';
 import { useUserAuth } from '../contexts/userAuthContext';
 
@@ -11,24 +10,6 @@ const Recruiter = () => {
   const {deleteUser} = useUserAuth();
 
   useEffect(() => {
-    // const fetchData = async () => {
-    //   const colRef = collection(db, "users");
-    //   const q = query(colRef, where("userType", "==", "recruiter"));
-
-    //   try {
-    //     const querySnapshot = await getDocs(q);
-    //     // console.log(querySnapshot);
-    //     const data = querySnapshot.docs.map((doc) => {
-    //       console.log(doc.id);
-    //       return {...doc.data(),id:doc.id}
-    //     });
-    //     console.log(data);
-    //     setRows(data)
-    //   } catch (error) {
-    //     console.error("Error fetching data:", error);
-    //   }
-    // };
-    // fetchData();
     const colRef = collection(db, "users");
     const q = query(colRef, where("userType", "==", "recruiter"));
     onSnapshot(q, (querySnapshot) => {
@@ -45,14 +26,6 @@ const Recruiter = () => {
       console.log("cleanup function");
     };
   }, []);
-
-  const handleDelete = async(id) => {  
-    console.log(id);
-    
-      const res = await deleteUser(id);
-      console.log(res);
-    
-  }
   
   const handleVerify = async(id) => {
     console.log(id);
@@ -98,7 +71,6 @@ const Recruiter = () => {
   ];
   return (
     <div style={{width:"100%"}}>
-      {/* <DataGrid {...data}  slots={{ toolbar: GridToolbar }} /> */}
       <DataGrid
         rows={rows}
         columns={columns}

@@ -1,33 +1,20 @@
 import {
   Box,
   Button,
-  List,
   TextField,
-  ListItemText,
-  ListItem,
-  ListItemButton,
   Modal,
-  Typography,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import {
   DataGrid,
-  GridToolbar,
-  GridToolbarExport,
-  GridToolbarFilterButton,
   GridToolbarQuickFilter,
-  GridToolbarColumnsButton,
-  GridSortApi,
-  GridValueGetterParams,
 } from "@mui/x-data-grid";
 import {
   doc,
-  setDoc,
   collection,
   addDoc,
   serverTimestamp,
   query,
-  getDocs,
   onSnapshot,
   deleteDoc,
 } from "firebase/firestore";
@@ -36,7 +23,7 @@ import MUIRichTextEditor from "mui-rte";
 import { stateToHTML } from "draft-js-export-html";
 import ReactHtmlParser from "react-html-parser";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import Radium, { StyleRoot } from "radium";
+import { StyleRoot } from "radium";
 
 // import {formatDate} from "../utils/formatDate";
 const Notices = () => {
@@ -90,20 +77,6 @@ const Notices = () => {
 
   useEffect(() => {
     const q = query(collection(db, "notices"));
-    // const fetchData = async () => {
-    //     try {
-    //       const querySnapshot = await getDocs(q);
-    //       const data = [];
-    //       querySnapshot.forEach((doc) => {
-    //         data.push({ id: doc.id, ...doc.data() });
-    //       });
-    //       console.log("Query response data:", data);
-    //       setNoticeList(data);
-
-    //     } catch (e) {
-    //       console.log(e.message);
-    //     }
-    // };
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       const data = [];
       querySnapshot.forEach((doc) => {
@@ -113,13 +86,11 @@ const Notices = () => {
       setNoticeList(data);
     });
 
-    //   fetchData();
     return () => {
       // cleanup
       setContent("");
       setHeading("");
       setNoticeList([]);
-      // fetchData();
       unsubscribe();
     };
   }, []);
@@ -139,11 +110,6 @@ const Notices = () => {
   };
 
   const styleNoticeList = {
-    // border: "1px solid grey",
-    // borderRadius: "5px",
-    // display: "flex",
-    // flexDirection: "row",
-    // gap: "10px",
     padding: "10px",
     margin: "5px",
     width: "100%",
@@ -299,7 +265,6 @@ const Notices = () => {
               Post
             </Button>
           </div>
-          {/* <div>{ReactHtmlParser(content)}</div> */}
         </form>
       </Box>
       <ThemeProvider theme={theme}>

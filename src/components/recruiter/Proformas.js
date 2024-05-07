@@ -7,20 +7,13 @@ import {
   getDocs,
   collection,
   where,
-  onSnapshot,
-  query,
 } from "@firebase/firestore";
 import { Paper, Box, Typography, Container, Button } from "@mui/material";
-import ReactHtmlParser from "react-html-parser";
 import {
   DataGrid,
-  GridToolbar,
-  GridToolbarExport,
   GridToolbarFilterButton,
   GridToolbarQuickFilter,
   GridToolbarColumnsButton,
-  GridSortApi,
-  GridValueGetterParams,
 } from "@mui/x-data-grid";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
@@ -101,7 +94,7 @@ export const Proformas = () => {
   };
 
   useEffect(() => {
-    console.log(user);
+    // console.log(user);
     setLoading(true);
 
     const fetchData = async () => {
@@ -123,7 +116,7 @@ export const Proformas = () => {
     };
     fetchData();
     return () => {
-      console.log("starting fetching data of company's proformas");
+      // console.log("starting fetching data of company's proformas");
     };
   }, [user]);
   const columns = [
@@ -170,111 +163,7 @@ export const Proformas = () => {
           <h1>Loading...</h1>
         ) : (
           <>
-            {/* <div>
-              {proformaList.length === 0 ? (
-                <h1>No proformas yet</h1>
-              ) : (
-                proformaList.map((data, index) => (
-                  <Container
-                    key={index}
-                    sx={{
-                      // border: "1px solid grey",
-                      backgroundColor: "#f3f6f9",
-                      borderRadius: "5px",
-                      padding: "5px",
-                      margin: "5px",
-                    }}
-                  >
-                    <h2
-                      style={{
-                        textAlign: "center",
-                        margin: "5px",
-                        padding: "5px",
-                        borderRadius: "5px",
-                      }}
-                    >
-                      {data.jobTitle}
-                    </h2>
-
-                    <Typography
-                      sx={{
-                        //   border: "0.5px solid grey",
-                        margin: "5px",
-                        padding: "5px",
-                        borderRadius: "5px",
-                        backgroundColor: "white",
-                      }}
-                    >
-                      <h6>Job Description</h6>
-                      {ReactHtmlParser(data.content)}
-                    </Typography>
-                    <div
-                      style={{
-                        display: "flex",
-                        flexDirection: "row",
-                        gap: "5px",
-                      }}
-                    >
-                      <div
-                        style={{
-                          flex: "1",
-                          // border: "0.5px solid grey",
-                          margin: "5px",
-                          padding: "5px",
-                          borderRadius: "5px",
-                          backgroundColor: "white",
-                        }}
-                      >
-                        <h6>Job Location</h6>
-                        {data.jobLocation}
-                      </div>
-                      <div
-                        style={{
-                          flex: "1",
-                          // border: "0.5px solid grey",
-                          margin: "5px",
-                          padding: "5px",
-                          borderRadius: "5px",
-                          backgroundColor: "white",
-                        }}
-                      >
-                        <h6>Stipend</h6>
-                        {data.stipend}
-                      </div>
-                    </div>
-                    <div
-                      style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        gap: "5px",
-                        flexWrap: "wrap",
-                        backgroundColor: "white",
-                        margin: "5px",
-                        padding: "5px",
-                      }}
-                    >
-                      <h6>Eligible Branches</h6>
-                      <div
-                        style={{
-                          display: "flex",
-                          flexDirection: "row",
-                          flexWrap: "wrap",
-                          gap: "5px",
-                        }}
-                      >
-                        {console.log(requiredBranches(data.validBranches))}
-                        {requiredBranches(data.validBranches).map((branch) => (
-                          <div style={{}}>{branch}</div>
-                        ))}
-                      </div>
-                    </div>
-                  </Container>
-                ))
-              )}
-            </div> */}
             <div>
-              
-                {/* <h1 style={{ textAlign: "center" }}>Proformas</h1> */}
                 <ThemeProvider theme={theme}>
                   <div>
                     <DataGrid

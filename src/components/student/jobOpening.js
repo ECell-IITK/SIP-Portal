@@ -20,7 +20,6 @@ import {
   getDocs,
   collection,
   addDoc,
-  serverTimestamp,
   query,
   onSnapshot,
   setDoc,
@@ -28,13 +27,7 @@ import {
 } from "firebase/firestore";
 import {
   DataGrid,
-  GridToolbar,
-  GridToolbarExport,
-  GridToolbarFilterButton,
   GridToolbarQuickFilter,
-  GridToolbarColumnsButton,
-  GridSortApi,
-  GridValueGetterParams,
 } from "@mui/x-data-grid";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { db } from "../firebase";
@@ -109,12 +102,12 @@ export const JobOpening = () => {
         setDepartment(userData.data().department || "");
         setUserName(userData.data().name);
         setLoading(false);
-        console.log(data);
+        // console.log(data);
       } catch (err) {     
-        console.log(err.message);
+        // console.log(err.message);
       }
     };
-    console.log(user);
+    // console.log(user);
     fetchData();
   }, [user]);
   useEffect(() => {
@@ -124,7 +117,6 @@ export const JobOpening = () => {
       querySnapshot.forEach((doc) => {
         data.push({ ...doc.data(), id: doc.id });
       });
-      // givenTime = data
       console.log(data);
       setJobOpeningList(data);
     });
@@ -142,10 +134,6 @@ export const JobOpening = () => {
         justifyContent: "space-between",
       }}
     >
-      {/* <div>
-        <GridToolbarColumnsButton />
-        <GridToolbarFilterButton />
-      </div> */}
       <div>
         <GridToolbarQuickFilter />
       </div>
@@ -163,16 +151,6 @@ export const JobOpening = () => {
     setResumeSelected(item);
     // setResumeSelected(e.target.value);
     console.log(resumeSelected);
-    // try {
-    //   await updateDoc(doc(db, "jobOpenings", id), {
-    //     resumeSelect: {
-    //       fileName: e.target.value,
-    //       id: e.target.value,
-    //     },
-    //   });
-    // } catch (err) {
-    //   console.log(err.message);
-    // }
   };
 
   const appliedOrTimeGone = (applied,timeNotGone) => {
@@ -244,10 +222,7 @@ export const JobOpening = () => {
       const companyName = jobSelected.companyName;
       const dataNeeded = await getDoc(doc(db,"proforma",jobSelected.porformaID));
       const getJob = await getDoc(doc(db, "appliedJobList", jobTitle));
-      console.log(dataNeeded)
-      console.log(dataNeeded.data())
       const validBranches = dataNeeded.data().validBranches;
-      console.log(validBranches)
       const numberPart = resumeSelected.match(/(\d+)\.pdf$/);
       const numericValue = parseInt(numberPart[1], 10) - 1;
       const resumeData = resumeList[numericValue];
@@ -300,7 +275,7 @@ export const JobOpening = () => {
         handleClose();
       }
     } catch (error) {
-      console.error("Error updating appliedJobList:", error.message);
+      // console.error("Error updating appliedJobList:", error.message);
       setError("Error applying for the job");
     }
   };

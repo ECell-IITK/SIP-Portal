@@ -13,7 +13,7 @@ import SwipeableViews from "react-swipeable-views";
 import { FormGroup, FormControlLabel, Checkbox } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import "./auth.css";
-import PropTypes, { array } from "prop-types";
+import PropTypes from "prop-types";
 import { useTheme } from "@mui/material/styles";
 import { useUserAuth } from "./contexts/userAuthContext";
 import { doc, serverTimestamp, setDoc } from "firebase/firestore";
@@ -132,13 +132,6 @@ const SignUp = () => {
         console.log(error, message);
       }
     }
-    // if (!error) {
-    //   setMessage("User Created Successfully");
-    // }
-    // setLoading(false);
-    // console.log(error, message);
-    // console.log(res)
-    // console.log(name, email, password, confirmPassword, checked);
   };
   const handleSubmitOfRecruiter = async (e) => {
     e.preventDefault();

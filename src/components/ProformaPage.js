@@ -6,7 +6,6 @@ import ReactHtmlParser from "react-html-parser";
 import { useUserAuth } from "./contexts/userAuthContext";
 
 const requiredBranches = (validBranches) => {
-  // console.log(validBranches);
   // const { AE, CE, CSE, BSBE, EE, MSE, CHE, ME, MTH, PHY, CHM, ECO, ES, SDS,CGS,DES,IME,MSP,NET,PSE,Stats,HSS,Mathematics,SEE,SSA } = validBranches;
   const branchList = [
     "AE",
@@ -57,7 +56,7 @@ const ProformaPage = ({ id }) => {
       setLoading(true);
       const res = await getDoc(doc(db, "proforma", id));
       setProformaData(res.data());
-      console.log(res.data());
+      // console.log(res.data());
       setLoading(false);
     };
     fetchData();

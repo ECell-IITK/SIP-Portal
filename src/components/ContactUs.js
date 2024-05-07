@@ -10,8 +10,6 @@ import {
     GridToolbarFilterButton,
     GridToolbarQuickFilter,
     GridToolbarColumnsButton,
-    GridSortApi,
-    GridValueGetterParams,
   } from "@mui/x-data-grid";
   import { createTheme, ThemeProvider } from "@mui/material/styles";
   import { useNavigate } from "react-router-dom";
@@ -39,39 +37,24 @@ const ContactUs = () => {
           },
         },
       });
-      const CustomToolbar = () => (
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-between",
-          }}
-        >
-          <div>
-            <GridToolbarColumnsButton />
-            <GridToolbarFilterButton />
-          </div>
-          <div>
-            <GridToolbarQuickFilter />
-          </div>
-          {/* Add more custom buttons or components here */}
-        </div>
-      );
       const columns = [
         {
           field: "name",
           headerName: "Name",
+          minWidth: 100,
           flex:1,
         },
         {
             field: "email",
             headerName: "Email",
+            minWidth: 140,
             flex:1,
             
         },
         {
             field: "phNumber",
             headerName: "Phone Number",
+            minWidth: 140,
             flex:1,
         }
     ]

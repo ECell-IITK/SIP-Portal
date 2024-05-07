@@ -32,22 +32,14 @@ const Student = () => {
       console.log("cleanup function");
     };
   }, []);
-
-  const handleDelete = async(id) => {  
-    console.log(id);
-      const ref = doc(db, "users", id);
-      const res = await deleteUser(id );
-      console.log(res);
-    
-  }
   
   const handleVerify = async(id) => {
-    console.log(id);
+    // console.log(id);
     const ref = doc(db, "users", id);
     const res = await updateDoc(ref,{verified:true});
   }
   const handleFreeze = async(id,freeze) => {
-    console.log(id);
+    // console.log(id);
     const ref = doc(db, "users", id);
     const res = await updateDoc(ref,{freeze:!freeze});
   }
@@ -97,7 +89,6 @@ const Student = () => {
   ];
   return (
     <div style={{width:"100%" }}>
-      {/* <DataGrid {...data}  slots={{ toolbar: GridToolbar }} /> */}
       <DataGrid
         rows={rows}
         columns={columns}

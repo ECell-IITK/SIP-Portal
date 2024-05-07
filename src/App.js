@@ -58,7 +58,6 @@ function App() {
           <Route path="/" element={<LogIn />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/forgotpassword" element={<ForgotPassword />} />
-          {/* <ProtectedRoute> */}
           <Route path="/student" element={<ProtectedRouteForStudent><StudentDashboard /></ProtectedRouteForStudent> }>
             <Route index element={<StudentHome /> } />
             <Route path="profile" element={<StudentProfile />} />
@@ -68,7 +67,6 @@ function App() {
             <Route path="jobOpening" element={<StudentJobOpening />} />
             
           </Route>
-          {/* </ProtectedRoute> */}
           <Route path="/recruiter" element={<ProtectedRouteForRecruiter><RecruiterDashboard /></ProtectedRouteForRecruiter>}>
             <Route path="/recruiter" element={<RecruiterHome />} />
             <Route path="/recruiter/notice" element={<NoticesRecruiter />} />

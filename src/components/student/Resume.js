@@ -1,25 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { MuiFileInput } from "mui-file-input";
 import {
-  Box,
   Button,
-  List,
-  TextField,
-  ListItemText,
-  ListItem,
-  ListItemButton,
-  Modal,
   Alert,
 } from "@mui/material";
 import {
   DataGrid,
-  GridToolbar,
-  GridToolbarExport,
   GridToolbarFilterButton,
   GridToolbarQuickFilter,
   GridToolbarColumnsButton,
-  GridSortApi,
-  GridValueGetterParams,
 } from "@mui/x-data-grid";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useUserAuth } from "../contexts/userAuthContext";
@@ -28,7 +17,6 @@ import { getDoc, doc, setDoc, updateDoc, onSnapshot } from "firebase/firestore";
 import {
   uploadBytes,
   ref as sRef,
-  listAll,
   getDownloadURL,
 } from "firebase/storage";
 
@@ -115,23 +103,6 @@ const Resume = () => {
   const handleChange = (newValue, info) => {
     setFile(newValue);
   };
-    // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const userData = await getDoc(doc(db, "users", user.uid));
-  //       // console.log(formData);
-  //       setRollNumber(userData.data().rollNumber);
-  //     } catch (error) {
-  //       console.error("Error fetching data:", error.message);
-  //     }
-  //   };
-  //   if (user) {
-  //     fetchData();
-  //   }
-
-  //   return () => {
-  //   };
-  // }, [user]);
   useEffect(() => {
     if (!user) return;
     const unsubscribe = onSnapshot(doc(db, "users", user.uid), (userData) => {
@@ -168,7 +139,7 @@ const Resume = () => {
             resumeNames = resumeNames.filter((name) => name !== item.fileName);
           });
           setRequiredName(resumeNames[0]);
-          console.log(resumeNames);
+          // console.log(resumeNames);
         }
       );
       return () => {
@@ -208,7 +179,7 @@ const Resume = () => {
       setLoading(false);
       return;
     }
-    console.log("uploading file");
+    // console.log("uploading file");
     const storageRef = sRef(storage, `${rollNumber}/${file.name}`);
     await uploadBytes(storageRef, file).then(() => {
       setMessage("File uploaded successfully");
@@ -231,15 +202,13 @@ const Resume = () => {
         verifiedStatus: "pending",
       });
       setResumeLinkList(temp);
-      console.log(temp);
-      console.log(resumeLinkList);
-      console.log("updating");
+      // console.log("updating");
       await setDoc(doc(db, "resumeLinks", rollNumber), { data: temp, recruitedStatus: "pending"});
       // const newData = { ...userData.data(), data: temp };
       // await updateDoc(doc(db, "users", user.uid), newData);
     } else {
       const url = await getDownloadURL(storageRef);
-      console.log(url);
+      // console.log(url);
       setResumeLinkList([
         {
           id: tempNum,
@@ -252,7 +221,7 @@ const Resume = () => {
           verifiedStatus: "pending",
         },
       ]);
-      console.log("setting");
+      // console.log("setting");
       await setDoc(doc(db, "resumeLinks", rollNumber), {
         data: [
           {
@@ -268,11 +237,6 @@ const Resume = () => {
         ],
         recruitedStatus: "pending",
       });
-      // const newData = {
-      //   ...userData.data(),
-      //   data: [{ fileName: file.name, link: url, verified: false, verifiedStatus: "pending"}],
-      // };
-      // await updateDoc(doc(db, "users", user.uid), newData);
     }
   };
   return (

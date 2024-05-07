@@ -16,7 +16,7 @@ export const Profile = () => {
         const userData = await getDoc(doc(db, "users", user.uid));
         setFormData(userData.data());
         setLoading(false);
-        console.log(userData.data());
+        // console.log(userData.data());
       } catch (error) {
         console.error("Error fetching data:", error.message);
         setLoading(false);

@@ -6,7 +6,6 @@ import CssBaseline from "@mui/material/CssBaseline";
 import MuiAppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
-import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -20,8 +19,6 @@ import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import { useNavigate, Navigate, Outlet, useLocation } from "react-router-dom";
 import { useUserAuth } from "../contexts/userAuthContext";
-import { db } from "../firebase";
-import { getDoc, doc } from "firebase/firestore";
 
 const drawerWidth = 240;
 const screenBreakPoint = 1200;
@@ -170,9 +167,6 @@ const Dashboard = () => {
           >
             <MenuIcon />
           </IconButton>
-          {/* <Typography variant="h6" noWrap component="div">
-            Persistent drawer
-          </Typography> */}
         </Toolbar>
       </AppBar>
       <Drawer

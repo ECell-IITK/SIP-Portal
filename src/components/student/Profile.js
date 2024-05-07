@@ -166,15 +166,6 @@ export const Profile = () => {
             </div>
             <div style={inputStyle}>
               <Typography variant="body1">Department</Typography>
-              {/* <TextField
-                required
-                id="filled-required"
-                defaultValue=""
-                variant="filled"
-                value={formData.department}
-                onChange={handleChange("department")}
-                sx={textFieldStyle}
-              ></TextField> */}
               <FormControl sx={textFieldStyle}>
               <Select
                   value={formData.department}
@@ -188,14 +179,6 @@ export const Profile = () => {
             </div>
             <div style={inputStyle}>
               <Typography variant="body1">Secondary Department</Typography>
-              {/* <TextField
-                id="filled-required"
-                defaultValue=""
-                variant="filled"
-                value={formData.secondaryDepartment}
-                onChange={handleChange("secondaryDepartment")}
-                sx={textFieldStyle}
-              ></TextField> */}
               <FormControl sx={textFieldStyle}>
               <Select
                   value={formData.secondaryDepartment}
@@ -209,15 +192,6 @@ export const Profile = () => {
             </div>
             <div style={inputStyle}>
               <Typography variant="body1">Program</Typography>
-              {/* <TextField
-                required
-                id="filled-required"
-                defaultValue=""
-                variant="filled"
-                value={formData.program}
-                onChange={handleChange("program")}
-                sx={textFieldStyle}
-              ></TextField> */}
               <FormControl sx={textFieldStyle}>
               <Select
                   value={formData.program}
@@ -233,15 +207,6 @@ export const Profile = () => {
             </div>
             <div style={inputStyle}>
               <Typography variant="body1">Secondary Program</Typography>
-              {/* <TextField
-                required
-                id="filled-required"
-                defaultValue=""
-                variant="filled"
-                value={formData.secondaryProgram}
-                onChange={handleChange("secondaryProgram")}
-                sx={textFieldStyle}
-              ></TextField> */}
               <FormControl sx={textFieldStyle}>
               <Select
                   value={formData.secondaryProgram}
@@ -269,16 +234,7 @@ export const Profile = () => {
             </div>
             <div style={inputStyle}>
               <Typography variant="body1">Preference</Typography>
-              {/* <TextField
-              required
-              id="filled-required"
-              defaultValue=""
-              variant="filled"
-              onChange={handleChange("preference")}
-              sx={textFieldStyle}
-            ></TextField> */}
               <FormControl sx={textFieldStyle}>
-                {/* <InputLabel>Gender</InputLabel> */}
                 <Select
                   value={formData.preference}
                   onChange={handleChange("preference")}

@@ -19,7 +19,6 @@ import FormControl from "@mui/material/FormControl";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import { FlareSharp } from "@mui/icons-material";
 
 const branchList = ["AE","BSBE","CE","CHE","CSE","EE","MSE","ME","CHM","ECO","ES","MTH","SDS","PHY","CGS","DES","IME","MSP","NET","PSE","Stats","HSS","Mathematics","SEE","SSA"]
 const branchListNames = ["Aerospace","Biosciences and Bioengineering","Civil","Chemical","Computer Science","Electrical","Materials Science and Engineering","Mechanical","Chemistry","Economics","Earth Sciences","Mathematics","Statistics and Data Science","Physics","Cognitive Science","Design","Industrial and Management Engineering","Mathematical Sciences","Nuclear Engineering and Technology","Physics","Statistics","Humanities and Social Sciences","Mathematics","Sustainable Energy Engineering","Smart and Sustainable Automation"]
@@ -70,8 +69,8 @@ export const Proforma = () => {
   const handleSubmit = async (e) => {
     setLoading(true);
     e.preventDefault();
-    console.log(jobTitle, content, stipend, jobLocation,validBranches);
-    console.log(user);
+    // console.log(jobTitle, content, stipend, jobLocation,validBranches);
+    // console.log(user);
     try {
       if (user) {
         const userData = await getDoc(doc(db, "users", user.uid));
@@ -93,10 +92,10 @@ export const Proforma = () => {
         setStipend("");
         setValidBranches(initialBranchesState);
       } else {
-        console.log("user not found");
+        // console.log("user not found");
       }
     } catch (err) {
-      console.log(err.message);
+      // console.log(err.message);
     }
   };
   // "AE","BSBE","CE","CHE","CSE","EE","MSE","ME","CHM","ECO","ES","MTH","SDS","PHY","CGS","DES","IME","MSP","NET","PSE","Stats","HSS","Mathematics","SEE","SSA"

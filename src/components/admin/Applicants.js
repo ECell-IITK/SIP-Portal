@@ -1,29 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { db } from "../firebase";
 import { doc, getDoc, getDocs, collection, where } from "@firebase/firestore";
-import { Box,
+import { 
     Button,
-    List,
-    TextField,
-    ListItemText,
-    ListItem,
-    ListItemButton,
-    Modal,
     Paper, } from "@mui/material";
-import ReactHtmlParser from "react-html-parser";
 import {
     DataGrid,
-    GridToolbar,
     GridToolbarExport,
     GridToolbarFilterButton,
     GridToolbarQuickFilter,
     GridToolbarColumnsButton,
-    GridSortApi,
-    GridValueGetterParams,
   } from "@mui/x-data-grid";
   import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { set } from "firebase/database";
-import { render } from "@testing-library/react";
   const columns = [
     {field:"name",headerName:"Name",minWidth:150,flex:1},
     {field:"email",headerName:"Email",minWidth:150,flex:2},
@@ -43,7 +31,6 @@ import { render } from "@testing-library/react";
           ),
     },
 ]
-const defaultTheme = createTheme();
 
 const theme = createTheme({
     palette: {

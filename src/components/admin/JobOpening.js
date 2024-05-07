@@ -2,15 +2,11 @@ import {
   Paper,
   TextField,
   FormControl,
-  Select,
-  formData,
-  MenuItem,
   Autocomplete,
   Button,
   Modal,
   Alert,
   Box,
-  InputLabel
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useUserAuth } from "../contexts/userAuthContext";
@@ -26,13 +22,7 @@ import {
 } from "firebase/firestore";
 import {
   DataGrid,
-  GridToolbar,
-  GridToolbarExport,
-  GridToolbarFilterButton,
   GridToolbarQuickFilter,
-  GridToolbarColumnsButton,
-  GridSortApi,
-  GridValueGetterParams,
 } from "@mui/x-data-grid";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { db } from "../firebase";
@@ -151,8 +141,6 @@ const JobOpening = () => {
       }}
     >
       <div>
-        {/* <GridToolbarColumnsButton />
-        <GridToolbarFilterButton /> */}
       </div>
       <div>
         <GridToolbarQuickFilter />
@@ -170,7 +158,6 @@ const JobOpening = () => {
     navigate(`/admin/applicants/${id}`);
   }
   const handleUpdateDeadline = async () => {
-    // console.log("Update Deadline",id);
     const updateRef = doc(db,"jobOpenings",jobSelectedId);
     setLoading(true);
     try{
@@ -271,7 +258,6 @@ const JobOpening = () => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          {/* Applying for {jobSelected} */}
           <strong>Set New Deadline</strong>
           <FormControl fullWidth>
             <LocalizationProvider dateAdapter={AdapterDayjs}>

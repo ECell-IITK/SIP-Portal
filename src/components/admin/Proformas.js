@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from "react";
 import {
   DataGrid,
-  GridToolbar,
-  GridToolbarExport,
   GridToolbarFilterButton,
   GridToolbarQuickFilter,
   GridToolbarColumnsButton,
-  GridSortApi,
-  GridValueGetterParams,
 } from "@mui/x-data-grid";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { db } from "../firebase";

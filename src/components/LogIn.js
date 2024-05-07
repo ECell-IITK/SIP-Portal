@@ -202,9 +202,6 @@ const LogIn = () => {
             >
               Login
             </p>
-            {/* <Typography variant="subtitle2" color="grey">
-              the SIP Portal <br />
-            </Typography> */}
           </div>
           <form
             type="submit"

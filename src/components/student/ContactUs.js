@@ -16,30 +16,14 @@ import {
   import React, { useEffect, useState } from "react";
   import { useUserAuth } from "../contexts/userAuthContext";
   import {
-    getDoc,
-    doc,
-    getDocs,
-    collection,
-    addDoc,
-    serverTimestamp,
-    query,
-    onSnapshot,
-    setDoc,
-    updateDoc,
-  } from "firebase/firestore";
-  import {
     DataGrid,
     GridToolbar,
     GridToolbarExport,
     GridToolbarFilterButton,
     GridToolbarQuickFilter,
     GridToolbarColumnsButton,
-    GridSortApi,
-    GridValueGetterParams,
   } from "@mui/x-data-grid";
   import { createTheme, ThemeProvider } from "@mui/material/styles";
-  import { db } from "../firebase";
-  import { useNavigate } from "react-router-dom";
 
 const ContactUs = () => {
     const style = {
@@ -64,40 +48,24 @@ const ContactUs = () => {
           },
         },
       });
-      const CustomToolbar = () => (
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-between",
-          }}
-        >
-          <div>
-            <GridToolbarColumnsButton />
-            <GridToolbarFilterButton />
-          </div>
-          <div>
-            <GridToolbarQuickFilter />
-          </div>
-          {/* Add more custom buttons or components here */}
-        </div>
-      );
       const columns = [
         {
           field: "name",
           headerName: "Name",
-          width: 300
+          minWidth: 100,
+          flex:1
         },
         {
             field: "email",
             headerName: "Email",
-            width: 300
-            
+            minWidth: 200,
+            flex:1
         },
         {
             field: "phNumber",
             headerName: "Phone Number",
-            width: 300
+            minWidth: 130,
+            flex:1
         }
     ]
     const rows = [

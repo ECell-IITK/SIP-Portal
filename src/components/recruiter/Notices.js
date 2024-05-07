@@ -1,37 +1,22 @@
 import {
     Box,
     Button,
-    List,
-    TextField,
-    ListItemText,
-    ListItem,
-    ListItemButton,
     Modal,
   } from "@mui/material";
   import React, { useEffect, useState } from "react";
   import {
     DataGrid,
-    GridToolbar,
-    GridToolbarExport,
     GridToolbarFilterButton,
     GridToolbarQuickFilter,
     GridToolbarColumnsButton,
-    GridSortApi,
-    GridValueGetterParams,
   } from "@mui/x-data-grid";
   import {
     doc,
-    setDoc,
     collection,
-    addDoc,
-    serverTimestamp,
     query,
-    getDocs,
     onSnapshot,
-    deleteDoc,
   } from "firebase/firestore";
   import { db } from "../firebase";
-  import MUIRichTextEditor from "mui-rte";
   import { stateToHTML } from "draft-js-export-html";
   import ReactHtmlParser from "react-html-parser";
   import { createTheme, ThemeProvider } from "@mui/material/styles";
@@ -94,11 +79,6 @@ import {
     };
   
     const styleNoticeList = {
-      // border: "1px solid grey",
-      // borderRadius: "5px",
-      // display: "flex",
-      // flexDirection: "row",
-      // gap: "10px",
       padding: "10px",
       margin: "5px",
       width: "100%",

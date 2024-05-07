@@ -135,7 +135,7 @@ export const Dashboard = () => {
   }
 
   const location = useLocation();
-  console.log(location.pathname);
+  // console.log(location.pathname);
 
 
   React.useEffect(() => {
@@ -169,9 +169,6 @@ export const Dashboard = () => {
           >
             <MenuIcon />
           </IconButton>
-          {/* <Typography variant="h6" noWrap component="div">
-            Persistent drawer
-          </Typography> */}
         </Toolbar>
       </AppBar>
       <Drawer

@@ -6,16 +6,11 @@ import LinearProgress from "@mui/material/LinearProgress";
 import {
   collection,
   getDoc,
-  getDocs,
-  query,
   setDoc,
-  updateDoc,
-  where,
   doc,
   onSnapshot,
 } from "firebase/firestore";
 import { useUserAuth } from "../contexts/userAuthContext";
-import { render } from "@testing-library/react";
 
 export const Resume = () => {
   const [rows, setRows] = useState([]);
@@ -25,7 +20,6 @@ export const Resume = () => {
 
   useEffect(() => {
     const colRef = collection(db, "resumeLinks");
-    // const q = query(colRef, where("userType", "==", "student"));
     const unsubscribe = onSnapshot(colRef, (querySnapshot) => {
       const data = [];
       querySnapshot.forEach((doc,index) => {
@@ -40,18 +34,17 @@ export const Resume = () => {
     console.log(id);
     try {
       const res = async () => await deleteUser(id);
-      console.log(res);
+      // console.log(res);
     } catch (err) {
-      console.log(err.message);
+      // console.log(err.message);
     }
   };
 
   const handleResumeClick = async (i, id, rollNumber) => {
-    console.log("handling resume click of " + i + " " + id);
+    // console.log("handling resume click of " + i + " " + id);
     setLoading(true);
     try {
       const res = await getDoc(doc(db, "resumeLinks", rollNumber));
-      console.log(res.data());
       const newData = res.data().data.map((item, index) => {
         if (index + 1 === i) {
           return { ...item, verified: true, verifiedStatus: "verified" };
@@ -60,10 +53,8 @@ export const Resume = () => {
       });
 
       await setDoc(doc(db, "resumeLinks", rollNumber), { data: newData });
-      // const newDoc = { data: newData };
-      // await updateDoc(doc(db, "users", id), { data: newData });
     } catch (err) {
-      console.log(err.message);
+      // console.log(err.message);
     }
     setLoading(false);
   };
@@ -72,17 +63,11 @@ export const Resume = () => {
     setLoading(true);
     try {
       const res = await getDoc(doc(db, "resumeLinks", rollNumber));
-      console.log(res.data());
       let newData = [];
       res.data().data.map((item, index) => {
         if (index + 1 != i) newData.push(item);
       });
-      console.log(newData);
-      // newData = res.data().data.filter((item, index) => index + 1 != item.id);
-      // console.log(newData);
       await setDoc(doc(db, "resumeLinks", rollNumber), { data: newData });
-      // const newDoc = { data: newData };
-      // await updateDoc(doc(db, "users", id), { data: newData });
     } catch (err) {
       console.log(err.message);
     }
@@ -91,7 +76,6 @@ export const Resume = () => {
 
   const updateRecruitementStatus = (row) => {
     return async () => {
-      console.log("handling recruitment status of " + row.data[0].rollNumber);
       setLoading(true);
       try {
         
@@ -103,7 +87,6 @@ export const Resume = () => {
   }
 
   const columns = [
-    // { field: "id", headerName: "ID", width: 70 },
     {
       field: "name",
       headerName: "Name",
@@ -245,7 +228,6 @@ export const Resume = () => {
       flex:2,
       renderCell: (params) => (
         <div>
-          {/* {console.log(params.row.data[0].link)} */}
           {params.row.data.length >= 3 ? (
             <div>
               <Button
@@ -329,20 +311,9 @@ export const Resume = () => {
         </div>
       ),
     }
-    // {
-    //   field: 'actions',
-    //   headerName: 'Actions',
-    //   width: 100,
-    //   renderCell: (params) => (
-    //     <div>
-    //       <Button onClick={() => handleDelete(params.row.id)}>Delete</Button>
-    //     </div>
-    //   ),
-    // },
   ];
   return (
     <div style={{ width:"100%"}}>
-      {/* <DataGrid {...data}  slots={{ toolbar: GridToolbar }} /> */}
       <DataGrid
         rows={rows}
         columns={columns}
