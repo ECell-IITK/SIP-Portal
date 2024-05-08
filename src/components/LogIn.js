@@ -159,13 +159,13 @@ const LogIn = () => {
       >
         <Link
           to={"/signup"}
-          style={{ textDecoration: "none", color: "turquoise", margin: "5px" }}
+          style={{ textDecoration: "none", color: "#3d52a0", margin: "5px" }}
         >
           Sign Up
         </Link>
         <Link
           to={"/"}
-          style={{ textDecoration: "none", color: "turquoise", margin: "5px" }}
+          style={{ textDecoration: "none", color: "#3d52a0", margin: "5px" }}
         >
           Contact Us
         </Link>
@@ -197,7 +197,7 @@ const LogIn = () => {
               style={{
                 fontWeight: "700",
                 fontSize: "30px",
-                color: "turquoise",
+                color: "#3d52a0",
               }}
             >
               Login
@@ -238,9 +238,9 @@ const LogIn = () => {
               sx={{
                 width: "100%",
                 maxWidth: "400px",
-                backgroundColor: "turquoise",
+                backgroundColor: "#3d52a0",
                 margin:"5px",
-                "&:hover": { backgroundColor: "turquoise" },
+                "&:hover": { backgroundColor: "#3d52a0" },
               }}
               type="submit"
               disabled={loading}
@@ -252,7 +252,7 @@ const LogIn = () => {
                 to={"/forgotpassword"}
                 style={{
                   textDecoration: "none",
-                  color: "turquoise",
+                  color: "#3d52a0",
                   textAlign: "right",
                 }}
               >
@@ -266,7 +266,7 @@ const LogIn = () => {
               to={"/signup"}
               style={{
                 textDecoration: "none",
-                color: "turquoise",
+                color: "#3d52a0",
                 textAlign: "right",
               }}
             >

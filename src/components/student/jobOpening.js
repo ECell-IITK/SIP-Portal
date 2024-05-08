@@ -143,7 +143,7 @@ export const JobOpening = () => {
 
   function handleProformaClick(id) {
     console.log(id);
-    navigate(`/admin/proforma/${id}`);
+    navigate(`/student/proforma/${id}`);
   }
 
   const handleResumeChange = async (item) => {

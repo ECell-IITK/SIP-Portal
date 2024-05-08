@@ -42,19 +42,19 @@ const ForgotPassword = () => {
       >
         <Link
           to={"/"}
-          style={{ textDecoration: "none", color: "turquoise", margin: "5px" }}
+          style={{ textDecoration: "none", color: "#3d52a0", margin: "5px" }}
         >
           Login
         </Link>
         <Link
           to={"/signup"}
-          style={{ textDecoration: "none", color: "turquoise", margin: "5px" }}
+          style={{ textDecoration: "none", color: "#3d52a0", margin: "5px" }}
         >
           Sign Up
         </Link>
         <Link
           to={"/"}
-          style={{ textDecoration: "none", color: "turquoise", margin: "5px" }}
+          style={{ textDecoration: "none", color: "#3d52a0", margin: "5px" }}
         >
           Contact Us
         </Link>
@@ -87,8 +87,8 @@ const ForgotPassword = () => {
             variant="contained"
             sx={{
               width: "100%",
-              backgroundColor: "turquoise",
-              "&:hover": { backgroundColor: "turquoise" },
+              backgroundColor: "#3d52a0",
+              "&:hover": { backgroundColor: "#3d52a0" },
               margin: "5px",
             }}
             type="submit"

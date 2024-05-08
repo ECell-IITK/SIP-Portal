@@ -7,6 +7,8 @@ import {
   getDocs,
   collection,
   where,
+  query,
+  onSnapshot,
 } from "@firebase/firestore";
 import { Paper, Box, Typography, Container, Button } from "@mui/material";
 import {
@@ -17,6 +19,7 @@ import {
 } from "@mui/x-data-grid";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
+import { CompareArrows } from "@mui/icons-material";
 
 const CustomToolbar = () => (
   <div
@@ -40,10 +43,10 @@ const CustomToolbar = () => (
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#808080",
+      main: "#adbbda",
     },
     secondary: {
-      main: "#808080",
+      main: "#ede8f5",
     },
   },
 });
@@ -56,33 +59,7 @@ export const Proformas = () => {
 
   const requiredBranches = (validBranches) => {
     // const { AE, CE, CSE, BSBE, EE, MSE, CHE, ME, MTH, PHY, CHM, ECO, ES, SDS,CGS,DES,IME,MSP,NET,PSE,Stats,HSS,Mathematics,SEE,SSA } = validBranches;
-    const branchList = [
-      "AE",
-      "BSBE",
-      "CE",
-      "CHE",
-      "CSE",
-      "EE",
-      "MSE",
-      "ME",
-      "CHM",
-      "ECO",
-      "ES",
-      "MTH",
-      "SDS",
-      "PHY",
-      "CGS",
-      "DES",
-      "IME",
-      "MSP",
-      "NET",
-      "PSE",
-      "Stats",
-      "HSS",
-      "Mathematics",
-      "SEE",
-      "SSA",
-    ];
+    const branchList = ["AE","BSBE","CE","CHE","CSE","EE","MSE","ME","CHM","ECO","ES","MTH","SDS","PHY","CGS","DES","IME","MSP","NET","PSE","Stats","HSS","Mathematics","SEE","SSA"];
     // const branchesInBool = [ AE,CE,CSE,BSBE,EE,MSE, CHE,ME,MTH,PHY,CHM,ECO,ES,SDS,CGS,DES,IME,MSP,NET,PSE,Stats,HSS,Mathematics,SEE,SSA]
     let branches = [];
     for (let i = 0; i < branchList.length; i++) {
@@ -94,7 +71,6 @@ export const Proformas = () => {
   };
 
   useEffect(() => {
-    // console.log(user);
     setLoading(true);
 
     const fetchData = async () => {
@@ -106,7 +82,8 @@ export const Proformas = () => {
           collection(db, "proforma"),
           where("companyName", "==", companyName)
         );
-        const proformasData = querySnapshot.docs.map((doc) => {
+        const tempData =  querySnapshot.docs.filter((doc) => doc.data().companyName === companyName);
+        const proformasData = tempData.map((doc) => {
           return {...doc.data(),id:doc.id}
       });
         console.log(proformasData);

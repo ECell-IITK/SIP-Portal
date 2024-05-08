@@ -65,6 +65,7 @@ function App() {
             <Route path="resume" element={<Resume />} />
             <Route path="contactUs" element={<ContactUs />} />
             <Route path="jobOpening" element={<StudentJobOpening />} />
+            <Route path="proforma/:id" element={<ProformaPageWrapper />} />
             
           </Route>
           <Route path="/recruiter" element={<ProtectedRouteForRecruiter><RecruiterDashboard /></ProtectedRouteForRecruiter>}>

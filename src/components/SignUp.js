@@ -190,13 +190,13 @@ const SignUp = () => {
       >
         <Link
           to={"/"}
-          style={{ textDecoration: "none", color: "turquoise", margin: "5px" }}
+          style={{ textDecoration: "none", color: "#3d52a0", margin: "5px" }}
         >
           Login
         </Link>
         <Link
           to={"/"}
-          style={{ textDecoration: "none", color: "turquoise", margin: "5px" }}
+          style={{ textDecoration: "none", color: "#3d52a0", margin: "5px" }}
         >
           Contact Us
         </Link>
@@ -228,12 +228,12 @@ const SignUp = () => {
               style={{
                 fontWeight: "700",
                 fontSize: "30px",
-                color: "turquoise",
+                color: "#3d52a0",
               }}
             >
               SIGN UP
             </p>
-            <Typography variant="subtitle2" color="grey">
+            <Typography variant="subtitle2" color="#8697c4">
               Please check the inbox after signup for email verification
             </Typography>
           </div>
@@ -325,7 +325,7 @@ const SignUp = () => {
                         <span>I accept the </span>
                         <Link
                           to={"/"}
-                          style={{ textDecoration: "none", color: "turquoise" }}
+                          style={{ textDecoration: "none", color: "#3d52a0" }}
                         >
                           intern policy
                         </Link>
@@ -337,8 +337,8 @@ const SignUp = () => {
                   variant="contained"
                   sx={{
                     width: "100%",
-                    backgroundColor: "turquoise",
-                    "&:hover": { backgroundColor: "turquoise" },
+                    backgroundColor: "#3d52a0",
+                    "&:hover": { backgroundColor: "#3d52a0" },
                   }}
                   type="submit"
                   disabled={loading}
@@ -425,7 +425,7 @@ const SignUp = () => {
                         <span>I accept the </span>
                         <Link
                           to={"/"}
-                          style={{ textDecoration: "none", color: "turquoise" }}
+                          style={{ textDecoration: "none", color: "#3d52a0" }}
                         >
                           terms and conditions
                         </Link>
@@ -437,8 +437,8 @@ const SignUp = () => {
                   variant="contained"
                   sx={{
                     width: "100%",
-                    backgroundColor: "turquoise",
-                    "&:hover": { backgroundColor: "turquoise" },
+                    backgroundColor: "#3d52a0",
+                    "&:hover": { backgroundColor: "#3d52a0" },
                   }}
                   type="submit"
                   disabled={loading}
@@ -455,7 +455,7 @@ const SignUp = () => {
               to={"/"}
               style={{
                 textDecoration: "none",
-                color: "turquoise",
+                color: "#3d52a0",
                 textAlign: "right",
               }}
             >

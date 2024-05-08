@@ -218,7 +218,7 @@ export const ProformaPage = ({ id }) => {
             backgroundColor: "white",
           }}
         >
-          <h6>Job Description</h6>
+          <div>Job Description</div>
           {ReactHtmlParser(proformaData.content)}
         </Typography>
         <div
@@ -238,7 +238,7 @@ export const ProformaPage = ({ id }) => {
               backgroundColor: "white",
             }}
           >
-            <h6>Job Location</h6>
+            <div>Job Location</div>
             {proformaData.jobLocation}
           </div>
           <div
@@ -251,7 +251,7 @@ export const ProformaPage = ({ id }) => {
               backgroundColor: "white",
             }}
           >
-            <h6>Stipend</h6>
+            <div>Stipend</div>
             {proformaData.stipend}
           </div>
         </div>
@@ -266,7 +266,7 @@ export const ProformaPage = ({ id }) => {
             padding: "5px",
           }}
         >
-          <h6>Eligible Branches</h6>
+          <div>Eligible Branches</div>
           <div
             style={{
               display: "flex",

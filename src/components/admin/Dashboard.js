@@ -74,10 +74,10 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 const Dashboard = () => {
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
-  const [styleAdminButton, setStyleAdminButton] = React.useState({backgroundColor:"transparent",borderRadius:"10px",border:"1px solid grey",margin:"5px",width:"220px"});
-  const [styleStudentButton, setStyleStudentButton] = React.useState({backgroundColor:"transparent",borderRadius:"10px",border:"1px solid grey",margin:"5px",width:"220px"});  
-  const [styleRecruiterButton, setStyleRecruiterButton] = React.useState({backgroundColor:"transparent",borderRadius:"10px",border:"1px solid grey",margin:"5px",width:"220px"});  
-  const [styleNoticeButton, setStyleNoticeButton] = React.useState({backgroundColor:"transparent",borderRadius:"10px",border:"1px solid grey",margin:"5px",width:"220px"});  
+  const [styleAdminButton, setStyleAdminButton] = React.useState({backgroundColor:"transparent",borderRadius:"2px",margin:"1px",width:"220px"});
+  const [styleStudentButton, setStyleStudentButton] = React.useState({backgroundColor:"transparent",borderRadius:"2px",margin:"1px",width:"220px"});  
+  const [styleRecruiterButton, setStyleRecruiterButton] = React.useState({backgroundColor:"transparent",borderRadius:"2px",margin:"1px",width:"220px"});  
+  const [styleNoticeButton, setStyleNoticeButton] = React.useState({backgroundColor:"transparent",borderRadius:"2px",margin:"1px",width:"220px"});  
   const navigate = useNavigate();
   const {user,logOut} = useUserAuth();
   const handleDrawerOpen = () => {
@@ -89,10 +89,10 @@ const Dashboard = () => {
   };
 
   const setDefaultColorsToButtons = () => { 
-    setStyleAdminButton({backgroundColor:"transparent",borderRadius:"10px",border:"1px solid grey",margin:"5px",width:"220px"}); 
-    setStyleStudentButton({backgroundColor:"transparent",borderRadius:"10px",border:"1px solid grey",margin:"5px",width:"220px"}); 
-    setStyleRecruiterButton({backgroundColor:"transparent",borderRadius:"10px",border:"1px solid grey",margin:"5px",width:"220px"}); 
-    setStyleNoticeButton({backgroundColor:"transparent",borderRadius:"10px",border:"1px solid grey",margin:"5px",width:"220px"});  
+    setStyleAdminButton({backgroundColor:"transparent",borderRadius:"2px",border:"1px solid grey",margin:"1px",width:"220px"}); 
+    setStyleStudentButton({backgroundColor:"transparent",borderRadius:"2px",border:"1px solid grey",margin:"1px",width:"220px"}); 
+    setStyleRecruiterButton({backgroundColor:"transparent",borderRadius:"2px",border:"1px solid grey",margin:"1px",width:"220px"}); 
+    setStyleNoticeButton({backgroundColor:"transparent",borderRadius:"2px",border:"1px solid grey",margin:"1px",width:"220px"});  
   }
 
   const handleAdminClick = () => {
@@ -139,27 +139,27 @@ const Dashboard = () => {
   React.useEffect(() => {
     if(location.pathname === "/admin"){
       setDefaultColorsToButtons();
-      setStyleAdminButton({backgroundColor:"#f0efef",borderRadius:"10px",border:"1px solid grey",margin:"5px",width:"220px"});
+      setStyleAdminButton({backgroundColor:"#f0efef",borderRadius:"2px",border:"1px solid grey",margin:"1px",width:"220px"});
     }else if(location.pathname === "/admin/student"){
       setDefaultColorsToButtons();
-      setStyleStudentButton({backgroundColor:"#f0efef",borderRadius:"10px",border:"1px solid grey",margin:"5px",width:"220px"});   
+      setStyleStudentButton({backgroundColor:"#f0efef",borderRadius:"2px",border:"1px solid grey",margin:"1px",width:"220px"});   
     }else if(location.pathname === "/admin/recruiter"){
       setDefaultColorsToButtons();
-      setStyleRecruiterButton({backgroundColor:"#f0efef",borderRadius:"10px",border:"1px solid grey",margin:"5px",width:"220px"}); 
+      setStyleRecruiterButton({backgroundColor:"#f0efef",borderRadius:"2px",border:"1px solid grey",margin:"1px",width:"220px"}); 
     }else if(location.pathname === "/admin/notice"){
       setDefaultColorsToButtons();
-      setStyleNoticeButton({backgroundColor:"#f0efef",borderRadius:"10px",border:"1px solid grey",margin:"5px",width:"220px"}); 
+      setStyleNoticeButton({backgroundColor:"#f0efef",borderRadius:"2px",border:"1px solid grey",margin:"1px",width:"220px"}); 
     }
   if(screenWidth <= screenBreakPoint){setOpen(false);}
     
   },[location.pathname])
   return (
-    <Box sx={{ display: "flex",backgroundColor:"#f3f6f9" }}>
-      <CssBaseline />
+    <Box sx={{ display: "flex",backgroundColor:"transparent" }}>
+      {/* <CssBaseline /> */}
       <AppBar  open={open} elevation={0} sx={{backgroundColor:"transparent"}}>
         <Toolbar>
           <IconButton
-            color="turquoise"
+            color=""
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
@@ -173,6 +173,7 @@ const Dashboard = () => {
         sx={{
           width: drawerWidth,
           flexShrink: 0,
+          backgroundColor:"#ede8f5",
           "& .MuiDrawer-paper": {
             width: drawerWidth,
             boxSizing: "border-box",
@@ -182,12 +183,14 @@ const Dashboard = () => {
           top:"0px",
           left:"0px",
           paddingRight:"10px",
+          // color:"3d52a0",
+          height:"100vh",
         }}
         variant="persistent"
         anchor="left"
         open={open}
       >
-        <DrawerHeader>
+        <DrawerHeader sx={{backgroundColor:"#ede8f5"}}>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === "ltr" ? (
               <ChevronLeftIcon />
@@ -197,7 +200,7 @@ const Dashboard = () => {
           </IconButton>
         </DrawerHeader>
         <Divider />
-        <List>
+        <List sx={{backgroundColor:"#ede8f5"}}>
           <ListItem key="Admin" disablePadding onClick={handleAdminClick} sx={styleAdminButton}>
             <ListItemButton>
               <ListItemIcon>
@@ -229,7 +232,7 @@ const Dashboard = () => {
           </ListItem>
         </List>
         <Divider />
-        <List>
+        <List sx={{backgroundColor:"#ede8f5"}}>
         <ListItem
             key="Notices"
             disablePadding
@@ -324,7 +327,7 @@ const Dashboard = () => {
           </ListItem>
         </List>
       </Drawer>
-      <Main open={open} sx={{overflowX:"hidden"}}>
+      <Main open={open} sx={{overflowX:"hidden",backgroundColor:"#ede8f5"}}>
         <DrawerHeader />
         <Outlet />
       </Main>

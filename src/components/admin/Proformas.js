@@ -33,10 +33,10 @@ const CustomToolbar = () => (
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#808080",
+      main: "#3d52a0",
     },
     secondary: {
-      main: "#808080",
+      main: "#3d52a0",
     },
   },
 });
